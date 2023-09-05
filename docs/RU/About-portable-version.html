@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>О портативной версии MIDI-MT</title>
+  <title></title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1341,29 +1341,22 @@ pre[class*="language-"] {
 </head>
 <body>
   <article class="markdown-body"><h2 class="atx" id="o-portativnoj-versii">О ПОРТАТИВНОЙ ВЕРСИИ</h2>
-<p>Портативная версия упакована "Enigma Virtual Box", который иногда дает ложные срабатывания антивирусных программ.
-Первым в списке, конечно является "Microsoft Windows Defender".</p>
+<p>Портативная версия упакована <code>Enigma Virtual Box</code>, которая иногда дает ложные срабатывания антивирусных программ.
+Первым в списке, конечно является <code>Microsoft Windows Defender</code>.</p>
 <p>Вы всегда можете оценить уровень опасности самостоятельно.
-Ссылка на результаты проверки на сайте <a href="https://www.virustotal.com/gui/file/a238b3af3595bb29ad729718561431d36c87f9f1c17c161fb41c03ee7071429c">https://www.virustotal.com/gui/file/a238b3af3595bb29ad729718561431d36c87f9f1c17c161fb41c03ee7071429c</a></p>
+Ссылка, на результаты проверки на сайте <a href="https://www.virustotal.com/gui/file/a238b3af3595bb29ad729718561431d36c87f9f1c17c161fb41c03ee7071429c">virustotal.com</a>.  </p>
 <p>Если у вас есть сомнения в "чистоте" портативной версии файла - просто не используйте его.</p>
 <ul>
 <li>Сборка MIDIMT_x64_Portable  - требует предварительную установку MIDI драйверов.</li>
 <li>Сборка MIDIMT_x64_PortableI - позволит использовать портативную весрсию без предварительной установки MIDI драйверов.</li>
 </ul>
 <h3 class="atx" id="neobhodimye-zavisimosti">НЕОБХОДИМЫЕ ЗАВИСИМОСТИ</h3>
-<p>Для запуска необходима установленная последняя версия <code>Visual C++ Redistributable</code> от компании Microsoft.
-Как правило, это дополнение уже установлено в вашей системе и дополнительная установка не требуется.
-Но для более ранних сборок Windows 10/11 возможно придеться обновить компонент <code>Visual C++ Redistributable</code>.</p>
-<p>Типичная ошибка при отсутствии актуальной версии компонента: "cannot load library msvcp140.dll"</p>
-<p>Распространяемый компонент <code>Visual C++</code> устанавливает библиотеки времени выполнения Microsoft C и C++.
-Эти библиотеки требуются для многих приложений, созданных с использованием инструментов Microsoft C и C++.
-Если приложение использует эти библиотеки, необходимо установить распространяемый пакет Microsoft Visual C++
-в целевой системе перед установкой приложения.</p>
+<p>Для успешного запуска <code>MIDI-MT</code>, необходимы следующие компоненты:</p>
 <ul>
-<li><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">X64</a> - Постоянная ссылка на последнюю поддерживаемую версию x64.  </li>
-<li><a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">X86</a> - Постоянная ссылка на последнюю поддерживаемую версию x86.  </li>
-<li><a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">microsoft.com supported vc redist</a>  </li>
+<li>Virtual MIDI драйвер от Tobias Erichsen.</li>
+<li>последняя версия <code>Visual C++ Redistributable</code> от компании Microsoft.</li>
 </ul>
+<p>Подробнее про установку этих компонентов можно прочитать в разделе <a href="RU-%D0%97%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8">Зависимости</a>.  </p>
 </article>
 </body>
 </html>

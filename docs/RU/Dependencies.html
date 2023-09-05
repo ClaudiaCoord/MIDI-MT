@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIDI-MT - Зависимости необходимые для установки</title>
+  <title></title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,8 +1340,29 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><p>Приложение использует MIDI драйвера от <a href="https://www.tobias-erichsen.de">Tobias Erichsen</a>, версии <strong>1.3.0.43</strong> от 2019-12-02. Для установки драйверов посетите сайт и установите <a href="https://www.tobias-erichsen.de/software/loopmidi.html">loopMIDI</a> или <a href="https://www.tobias-erichsen.de/software/rtpmidi.html">rtpMIDI</a>.<br>В этих дистрибутивах включены драйвера необходимые для работы.<br>Если по каким-то причинам сайт tobias-erichsen.de не доступен, <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/loopMIDISetup_1_0_16_27.zip">loopMIDI</a> можно скачать с <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/loopMIDISetup_1_0_16_27.zip">этого репозитория</a>.  </p>
-<p>Приложение loopMIDI само по себе полезное, дающее возможность эксперементировать вам с подключением и коммутацией MIDI оборудованием.</p>
+  <article class="markdown-body"><h2 class="atx" id="neobhodimye-zavisimosti">НЕОБХОДИМЫЕ ЗАВИСИМОСТИ</h2>
+<p>Для запуска <code>MIDI-MT</code>, необходимы следующие компоненты:</p>
+<ul>
+<li>Virtual MIDI драйвер от Tobias Erichsen.</li>
+<li>Последняя версия <code>Visual C++ Redistributable</code> от компании Microsoft.</li>
+</ul>
+<h3 class="atx" id="virtual-midi-drajver">Virtual MIDI драйвер</h3>
+<p>Приложение использует MIDI драйвера от <a href="https://www.tobias-erichsen.de">Tobias Erichsen</a>, версии <strong>1.3.0.43</strong> от 2019-12-02. Перед запуском <code>MIDI-MT</code> необходима его установка.<br>Для установки MIDI драйвера, посетите сайт и установите <a href="https://www.tobias-erichsen.de/software/loopmidi.html">loopMIDI</a> или <a href="https://www.tobias-erichsen.de/software/rtpmidi.html">rtpMIDI</a>.<br>В этих дистрибутивах включены драйвера необходимые для работы.<br>Если по каким-то причинам сайт tobias-erichsen.de не доступен, <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/loopMIDISetup_1_0_16_27.zip">loopMIDI</a> можно скачать с <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/loopMIDISetup_1_0_16_27.zip">этого репозитория</a>.  </p>
+<p>Приложение, включающее в свой состав необходимые драйвера - <code>loopMIDI</code> само по себе полезное, дающее возможность эксперементировать вам с подключением и коммутацией MIDI оборудованием.</p>
+<h3 class="atx" id="microsoft-visual-c-redistributable">Microsoft Visual C++ Redistributable</h3>
+<p>Для запуска необходима установленная последняя версия <code>Visual C++ Redistributable</code> от компании Microsoft.
+Как правило, это дополнение уже установлено в вашей системе и дополнительная установка не требуется.
+Но для более ранних сборок Windows 10/11 возможно придеться обновить компонент <code>Visual C++ Redistributable</code>.</p>
+<p>Типичная ошибка при отсутствии актуальной версии компонента: "cannot load library msvcp140.dll"</p>
+<p>Распространяемый компонент <code>Visual C++</code> устанавливает библиотеки времени выполнения Microsoft C и C++.
+Эти библиотеки требуются для многих приложений, созданных с использованием инструментов Microsoft C и C++.
+Если приложение использует эти библиотеки, необходимо установить распространяемый пакет Microsoft Visual C++
+в целевой системе перед установкой приложения.</p>
+<ul>
+<li><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">X64</a> - Постоянная ссылка на последнюю поддерживаемую версию x64.  </li>
+<li><a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">X86</a> - Постоянная ссылка на последнюю поддерживаемую версию x86.  </li>
+<li><a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">microsoft.com supported vc redist</a>  </li>
+</ul>
 </article>
 </body>
 </html>

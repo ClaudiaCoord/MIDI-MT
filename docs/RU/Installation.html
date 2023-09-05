@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Установка MIDI-MT</title>
+  <title></title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,9 +1340,16 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><p>Установка не должна вызывать сложности, необходимо скачать установочный пакет <strong>MIDIMT_XX.msi</strong> из <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/releases">последнего доступного релиза</a> и установить стандартным образом.  </p>
-<p>Для нормальной работы приложения, необходимо установить пакет MIDI драйверов от <a href="https://www.tobias-erichsen.de/">Tobias Erichsen</a>. На момент написания настоящего документа актуальная версия драйвера <strong>1.3.0.43</strong> от 2019-12-02.  Подробно о получении и установке драйверов описано на странице ::<a href="Dependencies.html">Зависимости</a>.  </p>
-<p>Для быстрой настройки вашего контроллера EasyControl вы можете использовать <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/MIDIMT.Ctrl_data">файл настроек</a> для приложения <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/EasyControl.zip">EasyControl Setup</a> от производителя. Файл настроек для приложения <strong>MIDIMT</strong> имеет Json формат и его настройки должны совпадать с настройками контроллера. Описание настроек в формате Json описаны в ::<a href="Settings.html">Настройка</a>.  </p>
+  <article class="markdown-body"><h2 class="atx" id="ustanovka">Установка</h2>
+<p>Установка не должна вызывать сложности, необходимо скачать установочный пакет <strong>MIDIMT_xXX.msi</strong>, или <strong>MIDIMT_xXX.exe</strong> из <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/releases">последнего доступного релиза</a> и запустить установку стандартным образом.  </p>
+<p>Также, вы можете использовать <a href="RU-%D0%9E-%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B8">портативную версию</a> для платформы <code>x64</code>, которая не требует предварительной установки.</p>
+<p>Перед запуском <code>MIDI-MT</code>, необходимо установить следующие компоненты:</p>
+<ul>
+<li>Virtual <code>MIDI драйвер</code> от Tobias Erichsen.</li>
+<li>Последняя версия <code>Visual C++ Redistributable</code> от компании Microsoft.</li>
+</ul>
+<p>Подробнее про установку этих компонентов можно прочитать в разделе <a href="RU-%D0%97%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8">Зависимости</a>.  </p>
+<p>Для быстрой настройки вашего MIDI контроллера <code>EasyControl9</code> вы можете использовать <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/MIDIMT.Ctrl_data">файл настроек</a> для приложения <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/EasyControl.zip">EasyControl Setup</a> от производителя. Файл настроек для приложения <strong>MIDI-MT</strong> имеет <code>Json</code> формат и его настройки должны совпадать с настройками контроллера. Описание настроек в формате <code>Json</code> описаны в разделе о <a href="RU-%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8">настройках</a>.  </p>
 </article>
 </body>
 </html>

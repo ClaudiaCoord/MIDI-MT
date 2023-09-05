@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NIDI-MT Dependencies required for installation</title>
+  <title></title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,10 +1340,31 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><p>The application uses MIDI drivers from <a href="https://www.tobias-erichsen.de">Tobias Erichsen</a>, version <strong>1.3.0.43</strong> dated 2019-12-02. To install the drivers visit the site and install <a href="https://www.tobias-erichsen.de/software/loopmidi.html">loopMIDI</a> or <a href="https://www.tobias-erichsen.de/software/rtpmidi.html">rtpMIDI</a>.
+  <article class="markdown-body"><h2 class="atx" id="required-dependencies">REQUIRED DEPENDENCIES</h2>
+<p>To run <code>MIDI-MT</code>, the following components are required:</p>
+<ul>
+<li>Virtual MIDI driver from Tobias Erichsen.</li>
+<li>the latest version of <code>Visual C++ Redistributable</code> from Microsoft.</li>
+</ul>
+<h3 class="atx" id="virtual-midi-driver">Virtual MIDI driver</h3>
+<p>The application uses MIDI drivers from <a href="https://www.tobias-erichsen.de">Tobias Erichsen</a>, version <strong>1.3.0.43</strong> dated 2019-12-02. To install the drivers visit the site and install <a href="https://www.tobias-erichsen.de/software/loopmidi.html">loopMIDI</a> or <a href="https://www.tobias-erichsen.de/software/rtpmidi.html">rtpMIDI</a>.
 These distributions include the drivers necessary for operation.  </p>
 <p>If for some reason the site tobias-erichsen.de is not available, <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/loopMIDISetup_1_0_16_27.zip">loopMIDI</a> can be downloaded from <a href="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Dist/loopMIDISetup_1_0_16_27.zip">this repository</a>.  </p>
 <p>The loopMIDI application itself is useful, allowing you to experiment with connecting and switching MIDI equipment.  </p>
+<h3 class="atx" id="microsoft-visual-c-redistributable">Microsoft Visual C++ Redistributable</h3>
+<p>To application run, you need to install the latest version of <code>Visual C++ Redistributable</code> from the Microsoft company.
+As a rule, this add-on is already installed on your system and no additional installation is required.
+But for <strong>earlier builds</strong> of Windows 10/11, you may need to update the <code>Visual C++ Redistributable</code>.</p>
+<p>A typical error in the absence of the current version of the component: "cannot load library msvcp140.dll"</p>
+<p>The Visual C++ Redistributable installs Microsoft C and C++ (MSVC) runtime libraries.
+These libraries are required by many applications built by using Microsoft C and C++ tools.
+If your app uses those libraries, a Microsoft Visual C++ Redistributable package must be installed
+on the target system before you install your app.</p>
+<ul>
+<li><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">X64</a> - Permalink for latest supported x64 version.  </li>
+<li><a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">X86</a> - Permalink for latest supported x86 version.  </li>
+<li><a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">microsoft.com supported vc redist</a>  </li>
+</ul>
 </article>
 </body>
 </html>

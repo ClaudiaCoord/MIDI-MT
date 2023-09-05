@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIDI-MT portable version</title>
+  <title></title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1346,20 +1346,13 @@ First on the list, of course, is <code>Microsoft Windows Defender</code>.</p>
 <p>You can always assess the level of danger yourself
 Link to test results at <a href="https://www.virustotal.com/gui/file/a238b3af3595bb29ad729718561431d36c87f9f1c17c161fb41c03ee7071429c">virustotal</a></p>
 <p>If you have any doubts about the cleanliness of the portable version of a file, just don't use it.</p>
-<h2 class="atx" id="required-dependencies">REQUIRED DEPENDENCIES</h2>
-<p>To run, you need to install the latest version of <code>Visual C++ Redistributable</code> from the Microsoft company.
-As a rule, this add-on is already installed on your system and no additional installation is required.
-But for <strong>earlier builds</strong> of Windows 10/11, you may need to update the <code>Visual C++ Redistributable</code>.</p>
-<p>A typical error in the absence of the current version of the component: "cannot load library msvcp140.dll"</p>
-<p>The Visual C++ Redistributable installs Microsoft C and C++ (MSVC) runtime libraries.
-These libraries are required by many applications built by using Microsoft C and C++ tools.
-If your app uses those libraries, a Microsoft Visual C++ Redistributable package must be installed
-on the target system before you install your app.</p>
+<h3 class="atx" id="required-dependencies">REQUIRED DEPENDENCIES</h3>
+<p>The following components are required to successfully run <code>MIDI-MT</code>:</p>
 <ul>
-<li><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">X64</a> - Permalink for latest supported x64 version.  </li>
-<li><a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">X86</a> - Permalink for latest supported x86 version.  </li>
-<li><a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">microsoft.com supported vc redist</a>  </li>
+<li>Virtual MIDI driver from Tobias Erichsen.</li>
+<li>The latest version of <code>Visual C++ Redistributable</code> from Microsoft.</li>
 </ul>
+<p>You can read more about the installation of these components in the <a href="EN-Dependencies">dependencies</a> section.</p>
 </article>
 </body>
 </html>
