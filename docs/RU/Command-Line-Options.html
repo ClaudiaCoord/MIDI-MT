@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Первый запуск MIDI-MT</title>
+  <title>Параметры командной строки MIDI-MT</title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,31 +1340,39 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><p>После запуска приложения необходимо запустить сам MIDI транслятор. Найдите в трее иконку приложения <strong>MIDIMT</strong>, откройте меню и выберите пункт <strong>Старт</strong>. Откроется диалог в котором вы можете поменять базовые настройки при запуске транслятора.</p>
-<p><img alt="Settings EasyControl MIDI Translator" src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/web-screen-0-main-menu-1.png"></p>
-<h3 class="atx" id="soglashenie-o-imenovanii-midi-portov">Соглашение о именовании MIDI портов</h3>
-<p>Входной MIDI порт вы можете выбрать из выпадающего списка, это должен быть порт MIDI контроллера.<br>Выходной MIDI порт на котором формируются MIDI-Mackie нотации имеет имя составленное из имени входного порта и суффикса <strong>-Mackie-Out</strong>.<br>Имя прокси MIDI порта формируется аналогичным образом, суффикс для него будет <strong>-Proxy-Out</strong>.<br>Например:</p>
-<pre><code class="fenced-code-block">Входной MIDI порт:  W-FADER              // MIDI контроллер
-Выходной MIDI порт: W-FADER-Mackie-Out   // Premiere Pro (MIDI Mackie) порт
-Прокси MIDI порт:   W-FADER-Proxy-Out    // Любое приложение для параллельного управления с контроллера </code></pre>
-<p>Точное названия портов можно получить использовав пункт меню <strong>Информация</strong> при запущенном <strong>MIDI-MT</strong>.</p>
-<p><img alt="Настройки EasyControl9 MIDI-MT" src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/web-screen-1-start-0-ru.png"></p>
-<h3 class="atx" id="povedenie">Поведение</h3>
-<ul>
-<li>отмечен пункт <strong>авто старт</strong>, диалог не будет ожидать нажатия кнопки <strong>Старт</strong>, а в момент открытия запустит транслятор.</li>
-<li>отмечен пункт <strong>старт при загрузке</strong>, в момент автоматического запуска приложения при загрузке операционной системы приложение <strong>MIDI-MT</strong> будет загружено. Если пункт <strong>авто старт</strong> активен, транслятор будет запущен автоматически.</li>
-<li>пункт <strong>записывать лог</strong> отвечает за запись происходящих событий в файл, для возможного дальнейшего анализа отказа/отключения/подключения MIDI оборудования.</li>
-<li>пункт <strong>Монитор</strong> показывает подключён ли вывод MIDI команд для отладки и настройки оборудования. Стоит отметить что этот пункт включается и выключается автоматически из диалога <strong>Монитор</strong> вызываемого из меню. Вам не стоит менять его состояние, отображение состояния носит более информационный характер и показывает подключён ли в данный момент режим отладки MIDI оборудования.</li>
-<li>пункт <strong>Прокси</strong> отвечает за создание выходных прокси MIDI портов. Если выбрана величина отличная от 0, создаётся указанное количество выходных прокси MIDI портов в которые транслируются весь MIDI трафик идущий с вашего контроллера. Это может быть использовано для подключения другого программного обеспечения которым также можно будет управлять с вашего MIDI контроллера EasyControl.</li>
-<li>если отмечен пункт <strong>Порт не создаётся</strong>, <strong>MIDI-MT</strong> не будет создавать виртуальные MIDI порты. Вам необходимо самостоятельно создать порт в менеджере <strong>loopMIDI</strong> в соответствии с соглашением о именах портов. Это может быть полезно если вы по каким-то причинам хотите сохранить работающим виртуальный MIDI порт, даже при не загруженным приложении <strong>MIDI-MT</strong>.</li>
-<li>пункты <strong>MIDI порт</strong> и <strong>MIDI соединение</strong> показывают состояние MIDI портов.</li>
-<li>регулятор <strong>Интервал между нажатиями</strong> регулирует "дребезг контактов", предупреждая ложные срабатывания. Время выставляется в миллисекундах, по умолчанию имеет значение 50.</li>
-<li>регулятор <strong>Интервал как долгое нажатие</strong> регулирует время срабатывания кнопки, обрабатываемой как "долгое нажатие". За счёт этого параметра возможно использование кнопки для управления сразу двумя параметрами. Например, настройки по умолчанию кнопок под фадерами включают при "быстром нажатии" режим <strong>Solo</strong>, а при "долгом нажатии" режим <strong>Mute</strong> на выбранном канале. Время выставляется в миллисекундах, по умолчанию имеет значение 500.</li>
-</ul>
-<h3 class="atx" id="operacii">Операции</h3>
-<p>Если пункт «авто старт» не активирован, для запуска транслятора необходимо нажать кнопку «Старт».<br>Внесённые изменения можно сохранить в конфигурационном файле с помощью кнопки «Сохранить настройки».<br>В дальнейшем эти настройки будут применяться автоматически.<br>Для выхода из этого диалога нажмите кнопку «Закрыть».<br>Кнопки «О программе» и «Обновления», интуитивно понятны и не требуют объяснений.  </p>
-<p><img alt="Настройки EasyControl MIDI-MT" src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/web-screen-1-start-1-ru.png"></p>
-<p>При запуске, есть возможность использовать ключи командной строки. Подробно о синтаксисе ключей описано в разделе - <a href="Command-Line-Options.html">Параметры командной строки</a>.  </p>
+  <article class="markdown-body"><h3 class="atx" id="parametry-komandnoj-stroki">Параметры командной строки</h3>
+<p>При запуске, возможно задать некоторые параметры с помощью командной строки. Поддерживаються следующие ключи:  </p>
+<table>
+<thead>
+<tr>
+<th align="left">Command</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">--conf=path to file</td>
+<td align="left">Установить <strong>файл конфигурации</strong> по умолчанию</td>
+</tr>
+<tr>
+<td align="left">--mixer=yes/no</td>
+<td align="left">Установите запуск сервиса «Audio Mixer» по умолчанию</td>
+</tr>
+<tr>
+<td align="left">--mmkey=yes/no</td>
+<td align="left">Установите запуск сервиса «Мультимедийный ключ» по умолчанию</td>
+</tr>
+<tr>
+<td align="left">--mqtt=yes/no</td>
+<td align="left">Установить запуск сервиса «Умный Дом» по умолчанию</td>
+</tr>
+</tbody></table>
+<p>Пример правильного заполнения:  </p>
+<pre><code class="fenced-code-block">  "C:\Programm Files\MIDIMT\MIDIMT.exe" "--conf=C:\AppData\My Config\MIDIMT\my.cnf" --mixer=yes --mqtt=no
+or
+  "C:\Programm Files\MIDIMT\MIDIMT.exe" --conf=C:\AppData\MIDIMT\my.cnf --mixer=true --mqtt=false</code></pre>
+<p><img alt="ярлыки командной строки - MIDI MT" src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/web-cmd-line-shortcuts.png">  </p>
+<p>Пример неверного заполнения:  </p>
+<pre><code class="fenced-code-block">  "C:\Programm Files\MIDIMT\MIDIMT.exe" --conf="C:\AppData\MIDIMT\my.cnf" --mixer="yes" --mqtt='false'</code></pre>
 </article>
 </body>
 </html>
