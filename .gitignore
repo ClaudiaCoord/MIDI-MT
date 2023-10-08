@@ -1,3 +1,4 @@
 # Google App Engine generated folder
+*.jbf
 appengine-generated/
 docs/*/*.md
