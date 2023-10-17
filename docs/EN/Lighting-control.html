@@ -1340,221 +1340,57 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><h1 class="atx" id="broadcast-into-different-languages">Broadcast into different languages</h1>
-<p>Do you want to contribute to support various languages for the <strong>MIDI-MT project</strong>, or add your native language to the project?<br>This is not difficult to do, further instructions will help you with this.  </p>
-<p>Go to the site <a href="https://gitlocalize.com/repo/9000">gitlocalize.com</a>, there you will see a list of active languages for translating the project.  </p>
+  <article class="markdown-body"><h2 class="atx" id="lighting-control">Lighting control</h2>
+<p>Currently, at reasonable prices, a large number of lighting equipment that support control via the <strong>DMX512</strong> protocol has become available.</p>
+<p>The <strong>DMX512</strong> protocol is designed to control lighting devices. It allows you to control <code>512</code> channels simultaneously via one three-wire communication line. Depending on the capabilities of the lighting device, you can change the color, brightness, position of the light beam, switching effects and many other characteristics. As a rule, several channels are used on one lighting fixture. Several devices switched on simultaneously allow using the <strong>DMX512</strong> control protocol to create light patterns and design elements of varying complexity.</p>
+<p>The <strong>ArtNet</strong> protocol is a network version of the <strong>DMX512</strong> protocol. Distributed over a local network by sending to broadcast addresses. In this case, the end equipment must support the <strong>ArtNet</strong> protocol, or a gate must be installed to convert to the <strong>DMX512</strong> protocol.</p>
+<p><strong>MIDI-MT</strong> supports both of these protocols, both simultaneous and separate operation is possible. Support for both standard 8-bit channels and 16-bit channels has been implemented. They can be used simultaneously, but when designing a network, it must be taken into account that a 16-bit channel takes the place of two 8-bit channels. For example, if you assign a device with four 16-bit DMX channels address 10, then the next available DMX address will be number 18 and not 14.</p>
+<p>You can read more about the protocol on the website <a href="https://dmx-512.ru/wiki/dmx_512">dmx-512.ru</a>. </p>
+<h3 class="atx" id="settings">Settings</h3>
+<p>You can assign 8 or 16 bit channels in the configuration editor. To assign a channel, select the required item in the submenu <code>Control related to light control</code>:  </p>
 <ul>
-<li>If your language is not listed, add it using the <code>Add language</code> button.  </li>
-<li>Once you have selected the target language, navigate to the file you wish to translate.<br>After you've finished translating the file, to submit your work, click the <code>Create Review Request</code> button, this will send your changes to the MIDI-MT project repository. In the next release of the MIDI-MT release, you will be able to see your changes if they are accepted.  </li>
+<li><code>Channel “8 bit” (standard)</code>, group number “251”  </li>
+<li><code>Channel “16 bit” (extended)</code>, group number “250”  </li>
 </ul>
-<p><img alt="MIDI-MT language translate from gitlocalize" src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/web-gitlocalize-translate.png"></p>
-<p>More detailed instructions for working with the gitlocalize.com site can be found <a href="https://docs.gitlocalize.com/how_to_contribute.html">here</a>.  </p>
-<h3 class="atx" id="currently-supported-languages">Currently Supported languages</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Language</th>
-<th align="center">Status</th>
-<th align="center">ID</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><img src="https://flagcdn.com/ru.svg" width=20 /> &nbsp; Russian - Русский</td>
-<td align="center">+</td>
-<td align="center">1049</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/by.svg" width=20 /> &nbsp; Belarusian - беларускі</td>
-<td align="center">+</td>
-<td align="center">1059</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/bg.svg" width=20 /> &nbsp; Bulgarian - български</td>
-<td align="center">+</td>
-<td align="center">1026</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/ba.svg" width=20 /> &nbsp; Bosnian - bosanski</td>
-<td align="center">+</td>
-<td align="center">5146</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/hr.svg" width=20 /> &nbsp; Croatian - Hrvatski</td>
-<td align="center">+</td>
-<td align="center">1050</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/cz.svg" width=20 /> &nbsp; Czech - Čeština</td>
-<td align="center">+</td>
-<td align="center">1029</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/sk.svg" width=20 /> &nbsp; Slovak - slovenský</td>
-<td align="center">+</td>
-<td align="center">1051</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/si.svg" width=20 /> &nbsp; Slovene - Slovenščina</td>
-<td align="center">+</td>
-<td align="center">1060</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/rs.svg" width=20 /> &nbsp; Serbian - Srpski</td>
-<td align="center">+</td>
-<td align="center">3098</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/hu.svg" width=20 /> &nbsp; Hungarian - Magyar</td>
-<td align="center">+</td>
-<td align="center">1038</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/am.svg" width=20 /> &nbsp; Armenian - հայերեն</td>
-<td align="center">+</td>
-<td align="center">1067</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/ge.svg" width=20 /> &nbsp; Georgian - ქართული</td>
-<td align="center">+</td>
-<td align="center">1079</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/gb.svg" width=20 /> &nbsp; English - English</td>
-<td align="center">+</td>
-<td align="center">1033</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/de.svg" width=20 /> &nbsp; German - Deutsch</td>
-<td align="center">+</td>
-<td align="center">1031</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/fr.svg" width=20 /> &nbsp; French - Français</td>
-<td align="center">+</td>
-<td align="center">1036</td>
-</tr>
-<tr>
-<td align="left"><img src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/Frisae-Butjadingen_peninsula_flag.svg" width=20 /> &nbsp; Frisian - Western Frisia</td>
-<td align="center">+</td>
-<td align="center">1122</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/no.svg" width=20 /> &nbsp; Norwegian (bokmål)</td>
-<td align="center">+</td>
-<td align="center">2068</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/nl.svg" width=20 /> &nbsp; Dutch - Nederlands</td>
-<td align="center">+</td>
-<td align="center">1043</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/dk.svg" width=20 /> &nbsp; Danish - Dansk</td>
-<td align="center">+</td>
-<td align="center">1030</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/se.svg" width=20 /> &nbsp; Swedish - Sweden</td>
-<td align="center">+</td>
-<td align="center">1053</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/br.svg" width=20 /> &nbsp; Portuguese (Brazil)</td>
-<td align="center">+</td>
-<td align="center">2070</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/pt.svg" width=20 /> &nbsp; Portuguese (Portugal)</td>
-<td align="center">+</td>
-<td align="center">2070</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/jp.svg" width=20 /> &nbsp; Japanese - 日本語</td>
-<td align="center">+</td>
-<td align="center">1041</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/cn.svg" width=20 /> &nbsp; Simplified Chinese (China)</td>
-<td align="center">+</td>
-<td align="center">2052</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/tw.svg" width=20 /> &nbsp; Traditional Chinese (Taiwan)</td>
-<td align="center">+</td>
-<td align="center">2052</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/sa.svg" width=20 /> &nbsp; Arabic - عربي‎</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/bd.svg" width=20 /> &nbsp; Bangla - বাংলা</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/ad.svg" width=20 /> &nbsp; Catalan - Català</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/gr.svg" width=20 /> &nbsp; Greek - Ελληνικά</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/es.svg" width=20 /> &nbsp; Spanish - Castellano</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/ir.svg" width=20 /> &nbsp; Persian - فارسی‎</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/in.svg" width=20 /> &nbsp; Hindi - हिंदी</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/it.svg" width=20 /> &nbsp; Italian - Italiano</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/id.svg" width=20 /> &nbsp; Indonesian - Bahasa Indonesia</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/kr.svg" width=20 /> &nbsp; Korean - 한국어</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/pl.svg" width=20 /> &nbsp; Polish - Polski</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/ph.svg" width=20 /> &nbsp; Tagalog - Tagalog</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/th.svg" width=20 /> &nbsp; Thai - ภาษาไทย</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="left"><img src="https://flagcdn.com/tr.svg" width=20 /> &nbsp; Turkish - Türkçe</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-</tbody>
-</table>
+<p><img alt="MIDI-MT settings DMX512, ArtNet" src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/web-screen-4-dmx-edit-1.png"></p>
+<p>In the last column of settings, in the <code>destination</code> group, you need to specify the <strong>DMX</strong> channel number (address). Possible values range from “1” to “254”.  </p>
+<p><img alt="MIDI-MT settings DMX512, ArtNet" src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/web-screen-4-dmx-edit-0.png"></p>
+<p>It is also possible to edit the configuration file in any editor you are familiar with. The main section of lighting control settings looks like this:  </p>
+<pre><code class="fenced-code-block">    ...
+    },
+    "lights": {
+        "dmx": {
+            "enable": "true",
+            "port": 5,
+            "baudrate": 250000,
+            "stopbits": 2,
+            "timeout": 3,
+            "name": "USB Serial Port"
+        },
+        "artnet": {
+            "enable": "false",
+            "port": 6454,
+            "universe": 1,
+            "ip": "192.168.0.5",
+            "mask": "255.255.255.0",
+            "broadcast": "192.168.0.255"
+        }
+    },
+    "units":[ ...
+         // group 251 - channels with 8-bit resolution.
+         // group 250 - channels with a resolution of 16 bits.
+         // target = группа 251 или 250, longtarget = DMX адрес канала на устройстве 
+        {"scene":179,"id":14,"type":1,"target":251,"longtarget":5,"onoff":"false","value":11},
+        {"scene":179,"id":15,"type":1,"target":251,"longtarget":6,"onoff":"false","value":33},
+        {"scene":179,"id":16,"type":1,"target":251,"longtarget":7,"onoff":"false","value":22},
+    ... ]
+</code></pre>
+<h3 class="atx" id="repeaters-repeaters-and-protocol-converters">Repeaters, repeaters and protocol converters</h3>
+<p>To implement the integration of network technologies <strong>ArtNet</strong>, <strong>MQTT</strong> and <strong>DMX512</strong> into a single lighting control system, you can use not only equipment from well-known manufacturers. It is much cheaper to use for these purposes Arduino boards with support for WiFi technology, designed on ESP chipsets, for example ESP8266, ESP32, etc.<br>At the same time, it turns out to get a device with maximum capabilities at a minimum price. The budget of such a device will cost about the cost of one track lamp, in other words, its cost will be approximately 10-15% of the price of similar branded equipment.  </p>
+<p>One of these designs, which serves to expand the coverage of a network of managed devices, runs under the control of the <strong>MIDI-MT</strong> program, for which it was specially developed. Simplicity of execution and the wide availability of electronic components make it universal. This is a “repeater” that collects control information about the switching status of lighting fixtures from the <strong>ArtNet</strong> and <strong>MQTT</strong> networks, then the information is summarized and transmitted via the <strong>DMX</strong> protocol to the wired network, through which the actual lighting control takes place. Use requires the presence of a wired network <strong>DMX512</strong> and a connection point to it.  </p>
+<p>The repeater can be connected to a <strong>DMX512</strong> network consisting of one segment. If the control network is divided into unconnected segments, you can install “repeaters” in each network segment, thereby combining them into a single network. At the same time, the distance of the segments from each other does not matter; it is important that all “repeaters” are connected to a single local network, which implies control via the <strong>ArtNet</strong> protocol. If it is not possible to provide all “repeaters” with a single local network, you can use control via the <strong>MQTT</strong> protocol. The standard mode of operation of <strong>MIDI-MT</strong> is the simultaneous use of the <strong>ArtNet</strong> and <strong>MQTT</strong> protocols to generate an outgoing DMX stream.  </p>
+<p>In each lighting network control segment where a “repeater” is installed, it becomes a “Master”, with <strong>MQTT</strong> control signals taking precedence over <strong>ArtNet</strong> signals. If the source has been enabled using the <strong>MQTT</strong> control, it can only be disabled by it. This applies to any adjustments, both on and off, and to adjusting the brightness or changing the color. On the contrary, if the lighting fixture was turned on by signals from the <strong>ArtNet</strong> source, further control can be taken over by control signals via the <strong>MQTT</strong> protocol.  </p>
+<p>You can read more about multi-protocol “repeaters” and endpoints <a href="Repeater-DMX512-ARTNET-MQTT.html">here</a>.  </p>
 </article>
 </body>
 </html>
