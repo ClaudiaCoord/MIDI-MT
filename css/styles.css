@@ -181,6 +181,7 @@ header .buttons-wrapper {
         background-color: #00000059;
         padding: 10px 0px 80px 20px;
     }
+
     .mainBanner .btn-app-store .btn.btn-lg, .mainBanner .btn-app-store .btn-group-lg > .btn {
         padding: 0;
     }
@@ -188,6 +189,7 @@ header .buttons-wrapper {
     .mainBanner figure.figure-right {
         margin-top: 215px;
     }
+
     .mainBanner img.img-right {
         margin-bottom: -45px;
     }
@@ -230,6 +232,7 @@ header .buttons-wrapper {
     .ourFeatures .row.row-padding {
         padding-top: 40px;
     }
+
     .ourFeatures img.img-keyboard {
         display: block;
         position: relative;
@@ -237,6 +240,7 @@ header .buttons-wrapper {
         height: auto;
         transform: translate(-78%, 2%);
     }
+
     .ourFeatures .btn-prime-border {
         background: transparent;
         border-width: 2px;
@@ -246,6 +250,7 @@ header .buttons-wrapper {
         padding-top: 8px !important;
         padding-bottom: 8px !important;
     }
+
     .ourFeatures img.image-nofit {
         width: auto;
         height: 577px;
@@ -264,7 +269,7 @@ header .buttons-wrapper {
 .screenshots {
     background: #0f3468;
     text-align: center;
-    padding: 100px 0;
+    padding: 30px 0;
     background-size: cover;
     color: white;
     display: block;
@@ -386,9 +391,10 @@ header .buttons-wrapper {
         float: none;
         margin-bottom: 20px;
     }
-    a.button.button-stripe {
-        margin: 0 10%;
-    }
+
+        a.button.button-stripe {
+            margin: 0 10%;
+        }
 }
 
 .ttitle {
@@ -425,4 +431,38 @@ header .buttons-wrapper {
 .security-block {
     display: inline-block;
     margin-top: 15px;
+}
+
+.announce-col-container {
+    display: table;
+    width: 100%;
+}
+
+.announce-row {
+    display: table-row;
+    margin: 10px;
+}
+
+.announce-col {
+    display: table-cell;
+    padding: 10px;
+    margin: 10px;
+    background-color: #e2e2e2;
+}
+
+.announce-col-header {
+    display: block;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    margin: 10px;
+    background-color: #1a3f73;
+    font-variant-caps: all-small-caps;
+}
+
+.announce-col-body {
+    color: #3f4c5b;
+    text-align: left;
+    font-variant-caps: titling-caps;
+    display: inline-block;
+    padding: 10px;
 }
