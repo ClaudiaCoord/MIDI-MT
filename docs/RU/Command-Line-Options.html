@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Параметры командной строки MIDI-MT</title>
+  <title>MIDI-MT - Параметры командной строки</title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1245,7 +1245,7 @@ pre[class*="language-"] {
 
 /*# sourceURL=webpack://./src/muya/lib/assets/styles/exportStyle.css */
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9tdXlhL2xpYi9hc3NldHMvc3R5bGVzL2V4cG9ydFN0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHFCQUFxQjtBQUN2Qjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsb0JBQW9CO0VBQ3BCLFNBQVM7RUFDVCxVQUFVO0VBQ1YscUJBQXFCO0FBQ3ZCOztBQUVBOztFQUVFLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0FBQ2xCOztBQUVBOzs7RUFHRSwyQkFBMkI7QUFDN0I7O0FBRUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGNBQWM7RUFDZCxxQkFBcUI7QUFDdkI7QUFDQTtFQUNFLGNBQWM7RUFDZCxxQkFBcUI7QUFDdkI7O0FBRUE7RUFDRSxPQUFPO0VBQ1AsY0FBYztFQUNkLGNBQWM7RUFDZCwrQkFBK0I7QUFDakMiLCJzb3VyY2VSb290IjoiIn0= */</style>
-  <style>.markdown-body{font-size:14px;line-height:1.5;}pre.front-matter{display:none!important;}/** Liber **/
+  <style>.hf-container{font-family:"Segoe UI Variable Text","Open Sans","Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";}.markdown-body{font-family:"Segoe UI Variable Text","Open Sans","Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";font-size:10px;line-height:1;}/** Liber **/
 
 .hf-container,
 .markdown-body {
@@ -1358,21 +1358,17 @@ pre[class*="language-"] {
 <td align="left">Установите запуск сервиса «Audio Mixer» по умолчанию</td>
 </tr>
 <tr>
-<td align="left">--mmkey=yes/no</td>
-<td align="left">Установите запуск сервиса «Мультимедийный ключ» по умолчанию</td>
-</tr>
-<tr>
-<td align="left">--mqtt=yes/no</td>
-<td align="left">Установить запуск сервиса «Умный Дом» по умолчанию</td>
+<td align="left">--log=yes/no</td>
+<td align="left">Записывать лог файл по умолчанию</td>
 </tr>
 </tbody></table>
 <p>Пример правильного заполнения:  </p>
-<pre><code class="fenced-code-block">  "C:\Programm Files\MIDIMT\MIDIMT.exe" "--conf=C:\AppData\My Config\MIDIMT\my.cnf" --mixer=yes --mqtt=no
-or
-  "C:\Programm Files\MIDIMT\MIDIMT.exe" --conf=C:\AppData\MIDIMT\my.cnf --mixer=true --mqtt=false</code></pre>
-<p><img alt="ярлыки командной строки - MIDI MT" src="https://claudiacoord.github.io/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/Images/web-cmd-line-shortcuts.png">  </p>
+<pre><code class="fenced-code-block">  "C:\Programm Files\MIDI-MT\MIDIMT.exe" "--conf=C:\AppData\My Config\MIDI-MT\my.cnf" --mixer=yes --log=no
+или:
+  "C:\Programm Files\MIDI-MT\MIDIMT.exe" --conf=C:\AppData\MIDI-MT\my.cnf --mixer=true --log=false</code></pre>
+<p><img alt="ярлыки командной строки - MIDI MT" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-CommandLine.png">  </p>
 <p>Пример неверного заполнения:  </p>
-<pre><code class="fenced-code-block">  "C:\Programm Files\MIDIMT\MIDIMT.exe" --conf="C:\AppData\MIDIMT\my.cnf" --mixer="yes" --mqtt='false'</code></pre>
+<pre><code class="fenced-code-block">  "C:\Programm Files\MIDI-MT\MIDIMT.exe" --conf="C:\AppData\MIDI-MT\my.cnf" --mixer="yes" --log='false'</code></pre>
 </article>
 </body>
 </html>

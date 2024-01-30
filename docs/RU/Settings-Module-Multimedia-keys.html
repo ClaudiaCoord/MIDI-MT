@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIDI-MT - documentation in English</title>
+  <title>MIDI-MT - Управление «мультимедиа клавишами»</title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,64 +1340,79 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><h4 class="atx" id="midi-mt-translator-easycontrol-midi-commands-in-midi-mackie-for-working-with-control-surfaces-in-adobe-products-and-more"><strong>MIDI-MT</strong> translator: EasyControl-MIDI commands in MIDI-Mackie for working with control surfaces in Adobe products and more..</h4>
-<p>Documentation in English.</p>
-<p><img alt="MIDI EasyControl 9 Device" src="https://claudiacoord.github.io/MIDI-MT/images/helper/web-present.png"></p>
-<p>MIDI-MT is a high-level application driver for <strong>USB MIDI</strong> control panels.</p>
-<h4 class="atx" id="dependencies">Dependencies</h4>
+  <article class="markdown-body"><h2 class="atx" id="upravlenie-«multimedia-klavishami»">Управление «мультимедиа клавишами»</h2>
+<p>Позволяет назначить стандартные мультимедиа команды контролам на <code>MIDI клавиатуре</code>. Для успешного использования этих функций, необходимо чтобы управляемое приложение находилось в фокусе.</p>
+<h3 class="atx" id="modul-upravleniya-«multimedia-klavishami»">Модуль управления «мультимедиа клавишами».</h3>
+<img data-align="center" alt="" title="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-PLUGIN-MMKeys.png">
+
+<p>Этот модуль не имеет настроек, список доступных команд приведён ниже, также он доступен в редакторе контролов.</p>
+<table>
+<thead>
+<tr>
+<th align="left">MIDI key</th>
+<th align="right">Windows command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">SYS_Zoom</td>
+<td align="right">ZOOM</td>
+</tr>
+<tr>
+<td align="left">SYS_Scrub</td>
+<td align="right">LAUNCH MEDIA SELECT</td>
+</tr>
+<tr>
+<td align="left">SYS_Record</td>
+<td align="right">PLAY</td>
+</tr>
+<tr>
+<td align="left">SYS_Rewind</td>
+<td align="right">MEDIA PREV TRACK</td>
+</tr>
+<tr>
+<td align="left">SYS_Forward</td>
+<td align="right">MEDIA NEXT TRACK</td>
+</tr>
+<tr>
+<td align="left">SYS_Play</td>
+<td align="right">MEDIA PLAY PAUSE</td>
+</tr>
+<tr>
+<td align="left">SYS_Up</td>
+<td align="right">VOLUME UP</td>
+</tr>
+<tr>
+<td align="left">SYS_Down</td>
+<td align="right">VOLUME DOWN</td>
+</tr>
+<tr>
+<td align="left">SYS_Left</td>
+<td align="right">VOLUME MUTE</td>
+</tr>
+<tr>
+<td align="left">SYS_Right</td>
+<td align="right">PAUSE</td>
+</tr>
+</tbody></table>
+<h3 class="atx" id="nastrojki-privyazok-organov-upravleniya">Настройки привязок органов управления</h3>
+<p>Номер группы мультимедиа клавиатуры «253» .</p>
+<img data-align="center" alt="" title="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-PLUGIN-MMKeys-edit1.png">
+
 <ul>
-<li><a href="Dependencies">Dependencies required for installation</a></li>
-</ul>
-<h4 class="atx" id="installation">Installation</h4>
-<ul>
-<li><a href="Installation">Installing <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="launch">Launch</h4>
-<ul>
-<li><a href="Launch">First launch of <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="settings">Settings</h4>
-<ul>
-<li><p><a href="Settings"><strong>MIDI-MT</strong> Settings</a></p>
-<ul>
-<li><p><a href="Settings-Configuration-files">Settings - Configuration Files</a></p>
+<li><h4 class="atx" id="konfiguracionnyj-fajl">Конфигурационный файл</h4>
 </li>
-<li><p><a href="Settings-Premiere-Pro">Preferences - “Premiere Pro”</a></p>
-</li>
-<li><p><a href="Settings-Module-MIDI">“MIDI” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Remote">“Remote Control Panel” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Gamepad">“Gamepad/Joystick” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Multimedia-keys">“Multimedia Keys” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Smart-House">“Smart House” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Lights">“Lighting” module settings</a></p>
-<ul>
-<li><a href="Light-Repeaters-DMX512-ARTNET-MQTT">Repeater-converter “DMX512/ARTNET/MQTT”</a></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 class="atx" id="audio-mixer">Audio Mixer</h4>
-<ul>
-<li><a href="Audio-Mixer"><strong>MIDI-MT</strong> Audio Mixer Settings</a></li>
-</ul>
-<h4 class="atx" id="portable-version">Portable version</h4>
-<ul>
-<li><a href="Portable-version">About the portable version of <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="command-line">Command line</h4>
-<ul>
-<li><a href="Command-Line-Options"><strong>MIDI-MT</strong> Command Line Options</a></li>
-</ul>
-<h4 class="atx" id="language-support">Language support</h4>
-<ul>
-<li><a href="Broadcast-into-different-languages">Broadcast into different languages</a></li>
-</ul>
+<p>Также возможно отредактировать файл конфигурации в любом привычном для вас редакторе. Основная секция настроек управления мультимедиа клавишами выглядит так:</p>
+<pre><code class="fenced-code-block">    ...
+    },
+  &nbsp;&nbsp;"mmkey": {
+    &nbsp;&nbsp;&nbsp;&nbsp;"enable": true
+    },
+    "units":[ ...
+        {"scene":176,"id":14,"type":3,"target":253,"longtarget":68,"onoff":"false","value":0},
+        {"scene":176,"id":15,"type":3,"target":253,"longtarget":69,"onoff":"false","value":0},
+        {"scene":176,"id":16,"type":3,"target":253,"longtarget":70,"onoff":"false","value":0},
+    ... ]</code></pre>
 </article>
 </body>
 </html>

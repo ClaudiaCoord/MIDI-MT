@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIDI-MT - documentation in English</title>
+  <title>MIDI-MT - Repeaters, gateway and protocol converters</title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,64 +1340,131 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><h4 class="atx" id="midi-mt-translator-easycontrol-midi-commands-in-midi-mackie-for-working-with-control-surfaces-in-adobe-products-and-more"><strong>MIDI-MT</strong> translator: EasyControl-MIDI commands in MIDI-Mackie for working with control surfaces in Adobe products and more..</h4>
-<p>Documentation in English.</p>
-<p><img alt="MIDI EasyControl 9 Device" src="https://claudiacoord.github.io/MIDI-MT/images/helper/web-present.png"></p>
-<p>MIDI-MT is a high-level application driver for <strong>USB MIDI</strong> control panels.</p>
-<h4 class="atx" id="dependencies">Dependencies</h4>
+  <article class="markdown-body"><h2 class="atx" id="repeaters-gateway-and-protocol-converters">Repeaters, gateway and protocol converters</h2>
+<p>To implement the integration of <strong>ArtNet</strong> , <strong>MQTT</strong> and <strong>DMX512</strong> network technologies into a single lighting control system, you can use not only equipment from well-known manufacturers. It is much cheaper to use <code>Arduino</code> -like boards for these purposes that support <code>WiFi</code> technology, designed on <code>ESP</code> chipsets, for example <code>ESP8266</code> , <code>ESP32</code> , etc.</p>
+<p>At the same time, it turns out to get a device with maximum capabilities at a minimum price. The budget of such a device will cost about the cost of one track lamp, in other words, its cost will be approximately <code>10-15%</code> of the price of similar branded equipment.</p>
+<p>One of these designs, which serves to expand the coverage of a network of smart devices, runs under the control of the <strong>MIDI-MT</strong> program, for which it was specially developed. Simplicity of execution and the wide availability of electronic components make it universal.</p>
+<p>The circuitry of the “Repeater” and “End Point” is very simple; the test specimen uses a ready-made microcontroller board developed by LOLIN (Wemos) on the <code>ESP8266</code> chipset and a ready-made <code>TTL</code> level converter board to the <code>RS485</code> interface. There are no restrictions, you can use any available analogues.</p>
+<h2 class="atx" id="installation-and-connection-are-made-according-to-the-diagram">Installation and connection are made according to the diagram:</h2>
+<p>"Repeater" device <img alt="MIDI-MT MQTT+ArtNet Repeater to DMX512" src="https://raw.githubusercontent.com/ClaudiaCoord/MIDI-MT-MQTT-ArtNet-Repeater-to-DMX512/main/docs/Images/DMX-Artnet-Wifi-Repeater_scheme.png"></p>
+<p>Endpoint device <img alt="MIDI-MT MQTT+ArtNet DMX512 Endpoint" src="https://raw.githubusercontent.com/ClaudiaCoord/MIDI-MT-MQTT-ArtNet-Repeater-to-DMX512/main/docs/Images/DMX-Artnet-Wifi-Endpoint_schema.png"></p>
+<h3 class="atx" id="connecting-a-ttl-level-converter-to-the-rs485-interface">connecting a TTL level converter to the RS485 interface</h3>
 <ul>
-<li><a href="Dependencies">Dependencies required for installation</a></li>
+<li>pin <code>DE</code> (data enable) to the pin on the microcontroller (Wemos - pin D2)</li>
+<li>pin <code>RE</code> (receive enable) to the pin on the microcontroller (Wemos - pin D2)</li>
+<li>pin <code>DI</code> (data in) connect to D4/TX1 on the microcontroller (Wemos - pin D4)</li>
+<li>pin <code>VCC</code> connect to 5V power supply</li>
+<li>pin <code>A</code> DMX signal output, to the lighting control bus (XLR connector pin 3, Ethernet connector pin 1)</li>
+<li>pin <code>B</code> DMX signal output, to the lighting control bus (XLR connector pin 2, Ethernet connector pin 2)</li>
+<li>pin <code>GND</code> ground, DMX output, to lighting control bus (XLR connector pin 1, Ethernet connector pin 7,8)</li>
 </ul>
-<h4 class="atx" id="installation">Installation</h4>
+<p><img alt="MIDI-MT RS485 to DMX512 Endpoint" src="https://raw.githubusercontent.com/ClaudiaCoord/MIDI-MT-MQTT-ArtNet-Repeater-to-DMX512/main/docs/Images/DMX-RS48_device.png"></p>
+<h3 class="atx" id="settings">Settings</h3>
+<p>The “Repeater” and “Endpoint” devices use <code>HTTP</code> server to receive the <strong>DMX512</strong> network configuration in <code>json</code> format. The <code>json</code> name of the configuration file is composed according to the following scheme:</p>
 <ul>
-<li><a href="Installation">Installing <strong>MIDI-MT</strong></a></li>
+<li>the names <code>art-dmx-XXX-XXX</code> refer to the "Repeater" device.</li>
+<li>the names <code>art-ep-XXX-XXX</code> refer to the "Endpoint" device.</li>
+<li>general part of the name: <code>art-dmx</code> or <code>art-ep</code></li>
+<li>hostname: <code>art-dmx-1-2</code> or <code>art-ep-1-2</code></li>
+<li>fully qualified domain name: <code>art-dmx-1-2.local</code> or <code>art-ep-1-2.local</code> , where numbers 1 and 2 are part of the IP address issued to the device: 192.168.1.2</li>
+<li>configuration file name: <code>art-dmx-1-2.json</code> or <code>art-ep-1-2.json</code></li>
 </ul>
-<h4 class="atx" id="launch">Launch</h4>
+<h4 class="atx" id="example-json-file-for-repeater-or-endpoint-device-settings">example <code>json</code> file for “Repeater” or “Endpoint” device settings</h4>
+<pre><code class="fenced-code-block">   sub - full name MQTT topic.
+   dmx - number channel from DMX512 network.
+
+{"mqtt":[
+   {"sub":"sensor/ctrl9/av9/slider","dmx":9},
+   {"sub":"sensor/ctrl9/b21/onoff","dmx":10},
+   {"sub":"sensor/ctrl9/b22/onoff","dmx":11},
+   {"sub":"sensor/ctrl9/b23/onoff","dmx":12}
+]}</code></pre>
+<p>One option for placing configurations is to use the built-in web server in the MQTT daemon <code>mosquitto</code> . To do this, you need to enable the use of web sockets and specify the path to the directory with <code>json</code> configuration.</p>
+<h4 class="atx" id="mosquittoconf-configuration-example">mosquitto.conf configuration example</h4>
+<pre><code class="fenced-code-block">per_listener_settings true
+
+listener 1883
+protocol mqtt
+socket_domain ipv4
+
+user mosquitto
+
+allow_anonymous false
+retain_available true
+use_username_as_clientid true
+allow_zero_length_clientid true
+auto_id_prefix auto-
+queue_qos0_messages false
+sys_interval 90
+autosave_interval 1800
+autosave_on_changes true
+
+persistence true
+persistent_client_expiration 1m
+persistence_location /var/lib/mosquitto/
+
+password_file /etc/mosquitto/pass.cfg
+acl_file /etc/mosquitto/mosquitto.acl
+pid_file /run/mosquitto/mosquitto.pid
+
+log_dest syslog
+log_type warning
+
+listener 9001
+protocol websockets
+# full directory path to `json` configuration 
+http_dir /srv/git/linuxconfig/mqttweb</code></pre>
+<h4 class="atx" id="example-of-setting-up-mosquittoacl">example of setting up mosquitto.acl</h4>
+<pre><code class="fenced-code-block">topic read $SYS/#
+pattern readwrite sensor/%u/#
+pattern write $SYS/broker/connection/%c/state
+
+# !!! ADD !!!
+# name (login) gateway (art-dmx-XXX-XXX) or end point (art-ep-XXX-XXX)
+# read only access!
+user art-dmx-0-11
+topic read #
+
+user art-ep-0-12
+topic read #
+
+# your administrator rights to access topics.
+user admin
+topic readwrite #</code></pre>
+<h4 class="atx" id="build-configuration-settings">build configuration settings</h4>
+<p>The main settings are in the <code>config.h.default</code> file. You need to edit it and rename it to <code>config.h</code> .</p>
+<p>Options:</p>
 <ul>
-<li><a href="Launch">First launch of <strong>MIDI-MT</strong></a></li>
+<li><code>USING_HTTP_AS_GW</code> - determines the location of the MQTT and HTTP server as the IP address of the WiFi gate (router).</li>
+<li><code>USING_HTTP_AS_HOST</code> - the IP address of the MQTT and HTTP server is indicated, numbers are entered separated by commas, without spaces.</li>
+<li><code>USING_HTTP_PORT</code> - defines the HTTP server port.</li>
+<li><code>USING_MQTT_SUBSCRIBE</code> - MQTT topic for subscription and listening.</li>
+<li><code>USING_MQTT_PASSWORD</code> - password for the MQTT server, the login is the host name, which is generated automatically.</li>
+<li><code>USING_MQTT_STATE</code> - MQTT topic for indicating the device state.</li>
+<li><code>USING_MQTT_PORT</code> - MQTT server port.</li>
+<li><code>USING_MQTT_ID</code> - use an extended MQTT identifier, used to work with several devices from one account, not recommended.</li>
+<li><code>DEBUG</code> - building code in debug mode, with output to <code>USB Serial</code> . Should not be used on a working instance, as it creates an additional load on the microcontroller memory.</li>
+<li><code>SEND_DMX_CODE_T1</code> - options for forming DMX packet headers; it is not recommended to change.</li>
+<li><code>PIN_ERROR</code> - contact for connecting a status indicator (Wemos - pin D1 LED).</li>
 </ul>
-<h4 class="atx" id="settings">Settings</h4>
+<p>For the “Repeater” device:</p>
 <ul>
-<li><p><a href="Settings"><strong>MIDI-MT</strong> Settings</a></p>
+<li><code>USING_ARTNET_FILTER</code> - allow only DMX channels specified in the configuration to pass from the ArtNet network.</li>
+<li><code>PIN_RS485_UP</code> - contact for activating the RS485 interface (Wemos - pin D2).</li>
+<li><code>PIN_RS485_TX</code> - TX pin of the RS485 interface (Wemos - pin D4)</li>
+</ul>
+<p>For an Endpoint device:</p>
 <ul>
-<li><p><a href="Settings-Configuration-files">Settings - Configuration Files</a></p>
-</li>
-<li><p><a href="Settings-Premiere-Pro">Preferences - “Premiere Pro”</a></p>
-</li>
-<li><p><a href="Settings-Module-MIDI">“MIDI” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Remote">“Remote Control Panel” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Gamepad">“Gamepad/Joystick” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Multimedia-keys">“Multimedia Keys” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Smart-House">“Smart House” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Lights">“Lighting” module settings</a></p>
-<ul>
-<li><a href="Light-Repeaters-DMX512-ARTNET-MQTT">Repeater-converter “DMX512/ARTNET/MQTT”</a></li>
+<li><code>USING_MODE_ONOF</code> - defines the load control algorithm: relays or PWM modules. When using a relay, the value should be <code>1</code> . When used as a dimmer, the value should be <code>0</code> .</li>
+<li><code>PINS_OUT</code> - list of contacts to which the load is connected: relays or PWM modules (Wemos - pins: D2, D5, D6, D7).</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 class="atx" id="audio-mixer">Audio Mixer</h4>
-<ul>
-<li><a href="Audio-Mixer"><strong>MIDI-MT</strong> Audio Mixer Settings</a></li>
-</ul>
-<h4 class="atx" id="portable-version">Portable version</h4>
-<ul>
-<li><a href="Portable-version">About the portable version of <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="command-line">Command line</h4>
-<ul>
-<li><a href="Command-Line-Options"><strong>MIDI-MT</strong> Command Line Options</a></li>
-</ul>
-<h4 class="atx" id="language-support">Language support</h4>
-<ul>
-<li><a href="Broadcast-into-different-languages">Broadcast into different languages</a></li>
-</ul>
+<h3 class="atx" id="purpose-and-features">Purpose and features</h3>
+<p>The “Repeater” device’s tasks include collecting control information about the switching status of lighting devices from <strong>the ArtNet</strong> and <strong>MQTT</strong> networks, then the information is summarized and transmitted via the <strong>DMX</strong> protocol to the wired network, through which the actual lighting control takes place. Use requires the presence of a wired <strong>DMX512</strong> network and a connection point to it.</p>
+<p>The Endpoint device processes data received from <strong>the ArtNet</strong> and <strong>MQTT</strong> networks. This data is used to physically control relay blocks or dimmers connected to the device.</p>
+<p>Management can be carried out using <strong>the ArtNet</strong> and <strong>MQTT</strong> protocols. The standard operating mode is the simultaneous use of the <strong>ArtNet</strong> and <strong>MQTT</strong> protocols to generate an outgoing DMX stream or control end devices.</p>
+<p><strong>MQTT</strong> control commands take precedence over <strong>ArtNet</strong> commands. If the source was enabled using <strong>MQTT</strong> control, it can only be disabled by it. This applies to any adjustments, both on and off, and to adjusting the brightness or changing the color. On the contrary, if the lighting fixture was turned on by commands from <strong>the ArtNet</strong> source, further control can be taken over by control signals via the <strong>MQTT</strong> protocol.</p>
+<h4 class="atx" id="schemes-and-firmware">Schemes and firmware</h4>
+<p>Schemes and firmware can be downloaded <a href="https://github.com/ClaudiaCoord/MIDI-MT-MQTT-ArtNet-Repeater-to-DMX512">here</a> .</p>
 </article>
 </body>
 </html>

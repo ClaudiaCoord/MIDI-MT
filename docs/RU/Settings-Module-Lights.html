@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIDI-MT - documentation in English</title>
+  <title>MIDI-MT - Управление освещением</title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,64 +1340,85 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><h4 class="atx" id="midi-mt-translator-easycontrol-midi-commands-in-midi-mackie-for-working-with-control-surfaces-in-adobe-products-and-more"><strong>MIDI-MT</strong> translator: EasyControl-MIDI commands in MIDI-Mackie for working with control surfaces in Adobe products and more..</h4>
-<p>Documentation in English.</p>
-<p><img alt="MIDI EasyControl 9 Device" src="https://claudiacoord.github.io/MIDI-MT/images/helper/web-present.png"></p>
-<p>MIDI-MT is a high-level application driver for <strong>USB MIDI</strong> control panels.</p>
-<h4 class="atx" id="dependencies">Dependencies</h4>
+  <article class="markdown-body"><h2 class="atx" id="upravlenie-osvesheniem">Управление освещением</h2>
 <ul>
-<li><a href="Dependencies">Dependencies required for installation</a></li>
-</ul>
-<h4 class="atx" id="installation">Installation</h4>
+<li><p>Обзор применения протоколов «DMX512» и «ArtNet»</p>
+</li>
+<li><p>Настройки модуля управления «световыми приборами»</p>
+</li>
+<li><p>Настройки привязок органов управления</p>
+</li>
+<li><p>Конфигурационный файл</p>
+</li>
+<li><p>Репитеры, повторители и конвертеры протоколов</p>
 <ul>
-<li><a href="Installation">Installing <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="launch">Launch</h4>
-<ul>
-<li><a href="Launch">First launch of <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="settings">Settings</h4>
-<ul>
-<li><p><a href="Settings"><strong>MIDI-MT</strong> Settings</a></p>
-<ul>
-<li><p><a href="Settings-Configuration-files">Settings - Configuration Files</a></p>
-</li>
-<li><p><a href="Settings-Premiere-Pro">Preferences - “Premiere Pro”</a></p>
-</li>
-<li><p><a href="Settings-Module-MIDI">“MIDI” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Remote">“Remote Control Panel” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Gamepad">“Gamepad/Joystick” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Multimedia-keys">“Multimedia Keys” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Smart-House">“Smart House” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Lights">“Lighting” module settings</a></p>
-<ul>
-<li><a href="Light-Repeaters-DMX512-ARTNET-MQTT">Repeater-converter “DMX512/ARTNET/MQTT”</a></li>
+<li>Arduino based <a href="Light-Repeaters-DMX512-ARTNET-MQTT.html">репитер</a> «DMX512», «ArtNet», «MQTT»</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h4 class="atx" id="audio-mixer">Audio Mixer</h4>
+<p>В настоящее время, по приемлемым ценам, стало доступно большое количество светового оборудования поддерживающие управление по поотоколу <strong>DMX512</strong>. </p>
+<p>Протокол <strong>DMX512</strong> разработан для управления световыми приборами. Он позволяет управлять по одной трехпроводной линии связи одновременно <code>512</code> каналами. В зависимости от возможностей осветительного прибора, можно изменять цвет, яокость, положение светового луча, переключение эффектов и многие другие характеристики. Как правило, на одном осветительном приборе используются сразу несколько каналов. Несколько включенных одновременно приборов, позволяют с помощью протокола управления <strong>DMX512</strong>, создавать световые картины и элементы оформления самой различной сложности.</p>
+<p>Протокол <strong>ArtNet</strong>, это сетевая версия протокола <strong>DMX512</strong>. Распространяется по локальной сети путем рассылки на широковещательные адреса. При этом, конечное оборудование должно поддерживать протокол <strong>ArtNet</strong>, или должен быть установлен гейт для преобразования в протокол <strong>DMX512</strong>.</p>
+<p><strong>MIDI-MT</strong> поддерживает оба этих протокола, возможна как одновременная работа по обеим протоколам, так и раздельная. Реализована поддержка как стандартных 8 битных каналов, так и 16 битных. Их можно применять одновременно, но при проектировании сети, надо учитывать что 16 битный канал занимает место двух 8 битных каналов. Например, если вы назначили устройству с четырьмя 16 битными каналами DMX адрес 10, то следующий свободный DMX адрес будет под номером 18 а не 14 .</p>
+<p>Подробнее о протоколе можно почитать на сайте <a href="https://dmx-512.ru/wiki/dmx_512">dmx-512.ru</a>.  </p>
+<h3 class="atx" id="nastrojki-modulya-upravleniya-«svetovymi-priborami»">Настройки модуля управления «световыми приборами»</h3>
+<p>Позволяет управлять световыми приборами и оборудованием по протоколам «<strong>DMX512</strong>» и «<strong>ArtNet</strong>».</p>
 <ul>
-<li><a href="Audio-Mixer"><strong>MIDI-MT</strong> Audio Mixer Settings</a></li>
+<li>Выбор «<strong>COM Порт</strong>» означает выбор последовательного порта, к которому подключен DMX контроллер.  Если это необходимо, параметры порта можно изменить в файле конфигурации путём редактирования.</li>
+<li>Выбор «<strong>ArtNet сеть</strong>» позволит определить, на каком интерфейсе будет производиться рассылка широковещательных пакетов по протоколу ArtNet.</li>
+<li>Поле «<strong>Номер вселенной</strong>» определяет адресацию «вселенной» для протокола ArtNet.</li>
+<li>Выбор «<strong>Порт</strong>» указывает на какой порт отправлять ArtNet данные, по умолчанию номер порта <code>6454</code>.</li>
+<li>Опция «<strong>Включить DMX пул</strong>» хоть и является стандартным поведением, но при использовании протокола ArtNet включать её не рекомендуется, так как она создаёт «сетевой шторм», увеличивая нагрузку на локальную сеть. Если ваше световое оборудование работает без этой опции, не используйте её.</li>
 </ul>
-<h4 class="atx" id="portable-version">Portable version</h4>
+<img data-align="center" alt="" title="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-PLUGIN-Lights.png">
+
+<h3 class="atx" id="nastrojki-privyazok-organov-upravleniya">Настройки привязок органов управления</h3>
+<p>Назначить 8 или 16 битные каналы вы можете в редакторе конфигураций. Для назначения канала, выбираете необходимы пункт в подменю <code>Контроль относиться к управлению светом</code>:  </p>
 <ul>
-<li><a href="Portable-version">About the portable version of <strong>MIDI-MT</strong></a></li>
+<li><code>Канал «8 бит» (стандарт)</code>, номер группы «251»</li>
+<li><code>Канал «16 бит» (расширенный)</code>, номер группы «250»</li>
 </ul>
-<h4 class="atx" id="command-line">Command line</h4>
-<ul>
-<li><a href="Command-Line-Options"><strong>MIDI-MT</strong> Command Line Options</a></li>
-</ul>
-<h4 class="atx" id="language-support">Language support</h4>
-<ul>
-<li><a href="Broadcast-into-different-languages">Broadcast into different languages</a></li>
-</ul>
+<p><img alt="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-PLUGIN-Lights-edit1.png"></p>
+<p>В последнем столбце настроек, в группе <code>назначение</code>, вам необходимо указать номер <strong>DMX</strong> канала (адрес). Возможные значения лежат в диапазоне от «1» до «254».</p>
+<p><img alt="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-PLUGIN-Lights-edit2.png"></p>
+<h4 class="atx" id="konfiguracionnyj-fajl">Конфигурационный файл</h4>
+<p>Также возможно отредактировать файл конфигурации в любом привычном для вас редакторе. Основная секция настроек управления освещением выглядит так:</p>
+<pre><code class="fenced-code-block">    ...
+    },
+  &nbsp;&nbsp;"lights": {
+    &nbsp;&nbsp;&nbsp;&nbsp;"pool": false,
+&nbsp;&nbsp;&nbsp;&nbsp;    "dmx": {
+&nbsp;&nbsp;&nbsp;&nbsp;      "enable": false,
+&nbsp;&nbsp;&nbsp;&nbsp;      "port": 5,
+&nbsp;&nbsp;&nbsp;&nbsp;      "baudrate": 250000,
+&nbsp;&nbsp;&nbsp;&nbsp;      "stopbits": 2,
+&nbsp;&nbsp;&nbsp;&nbsp;      "timeout": 3,
+&nbsp;&nbsp;&nbsp;&nbsp;      "name": "USB Serial Port"
+&nbsp;&nbsp;&nbsp;&nbsp;    },
+&nbsp;&nbsp;&nbsp;&nbsp;    "artnet": {
+&nbsp;&nbsp;&nbsp;&nbsp;      "enable": true,
+&nbsp;&nbsp;&nbsp;&nbsp;      "port": 6454,
+&nbsp;&nbsp;&nbsp;&nbsp;      "universe": 1,
+&nbsp;&nbsp;&nbsp;&nbsp;      "ip": "192.168.22.1",
+&nbsp;&nbsp;&nbsp;&nbsp;      "mask": "255.255.255.0",
+&nbsp;&nbsp;&nbsp;&nbsp;      "broadcast": "192.168.22.255"
+    &nbsp;&nbsp;&nbsp;&nbsp;}
+    },
+    "units":[ ...
+         // группа 251 - каналы с разрешением 8 бит.
+         // группа 250 - каналы с разрешением 16 бит.
+         // target = группа 251 или 250, longtarget = DMX адрес канала на устройстве 
+        {"scene":179,"id":14,"type":1,"target":251,"longtarget":5,"onoff":"false","value":11},
+        {"scene":179,"id":15,"type":1,"target":251,"longtarget":6,"onoff":"false","value":33},
+        {"scene":179,"id":16,"type":1,"target":251,"longtarget":7,"onoff":"false","value":22},
+    ... ]</code></pre>
+<h3 class="atx" id="repitery-povtoriteli-i-konvertery-protokolov">Репитеры, повторители и конвертеры протоколов</h3>
+<p>Для реализации объединения сетевых технологий <strong>ArtNet</strong>, <strong>MQTT</strong> и <strong>DMX512</strong> в единую систему управления световыми приборами можно использовать не только оборудование известных производителей. Гораздо дешевле, использовать для этих целей <code>Arduino</code> подобные платы с поддержкой технологии <code>WiFi</code>, спроектированные на чтпсетах <code>ESP</code>, например <code>ESP8266</code>, <code>ESP32</code> и т.д.</p>
+<p>При этом, получается получить прибор с максимальными возможностями по минимальной цене. Бюджет такого устройства обойдется в стоимость примерно одного трекового светильника, другими словами, его стоимость выйдет примерно в <code>10-15%</code> от цены аналогично фирменного оборудования.</p>
+<p>Одна из таких конструкций, служащая для расширения охвата сети управляемых устройств, работает под управлением программы <strong>MIDI-MT</strong>, для которой была специально разработана. Простота исполнения и наличие в широкой продаже электронных компонентов делают её универсальной. Это «репитер», который собирает управляющую информацию о состоянии включения осветительных приборов из сетей <strong>ArtNet</strong> и <strong>MQTT</strong>, далее информация суммируется и передается по протоколу <strong>DMX</strong> в проводную сеть, через которую идет реальное управление освещением. Использование подразумевает наличие проводной сети <strong>DMX512</strong> и точки подключения к ней.</p>
+<p>Репитер можно подключить к сети <strong>DMX512</strong> состоящий из одного сегмента. Если сеть управления поделена на несвязанные между собой сегменты, можно установить «репитеры» в каждом сегменте сети, тем самым объединив их в единую сеть. При этом, удаленность расположения сегментов друг от друга не имеет значения, важно что бы все «репитеры» были подключены в единую локальную сеть, при этом подразумевается управление по протоколу <strong>ArtNet</strong>. В случае отсутствия возможности предоставить всем «репитерам» единую локальную сеть, можно использовать управление по протоколу <strong>MQTT</strong>. Стандартный режим работы <strong>MIDI-MT</strong>, это одновременное использование протоколов <strong>ArtNet</strong> и <strong>MQTT</strong> для формирования исходящего DMX потока.</p>
+<p>В каждом сегменте управления осветительной сетью, где установлен «репитер», он становится «Мастером», при этом сигналы управления <strong>MQTT</strong> имеют преимущество перед сигналами <strong>ArtNet</strong>. Если ичточник был включен с помощью <strong>MQTT</strong> управления, его отключение может быть осуществлено только им. Это относится к любым регулировкам, как к включению и выключению, так и к регулировке яркости или изменения цвета. Напротив, если осветительный прибор был включен сигналами из  <strong>ArtNet</strong> источника, дальнейшее управление могут взять на себя управляющие сигналы по протоколу <strong>MQTT</strong> .</p>
+<p>Подробнее о мульти-протокольных «репитерах» и «конечных точках», можно почитать <a href="Light-Repeaters-DMX512-ARTNET-MQTT.html">тут</a>.</p>
 </article>
 </body>
 </html>

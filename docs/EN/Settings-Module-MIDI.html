@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIDI-MT - documentation in English</title>
+  <title>MIDI-MT - Interaction with MIDI devices</title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,64 +1340,70 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><h4 class="atx" id="midi-mt-translator-easycontrol-midi-commands-in-midi-mackie-for-working-with-control-surfaces-in-adobe-products-and-more"><strong>MIDI-MT</strong> translator: EasyControl-MIDI commands in MIDI-Mackie for working with control surfaces in Adobe products and more..</h4>
-<p>Documentation in English.</p>
-<p><img alt="MIDI EasyControl 9 Device" src="https://claudiacoord.github.io/MIDI-MT/images/helper/web-present.png"></p>
-<p>MIDI-MT is a high-level application driver for <strong>USB MIDI</strong> control panels.</p>
-<h4 class="atx" id="dependencies">Dependencies</h4>
+  <article class="markdown-body"><h2 class="atx" id="interaction-with-midi-devices">Interaction with MIDI devices</h2>
 <ul>
-<li><a href="Dependencies">Dependencies required for installation</a></li>
+<li>Supported MIDI controllers</li>
+<li>Settings for interaction with MIDI devices<ul>
+<li>Use as a MIDI proxy server</li>
+<li>Working in virtual MIDI hub mode</li>
 </ul>
-<h4 class="atx" id="installation">Installation</h4>
-<ul>
-<li><a href="Installation">Installing <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="launch">Launch</h4>
-<ul>
-<li><a href="Launch">First launch of <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="settings">Settings</h4>
-<ul>
-<li><p><a href="Settings"><strong>MIDI-MT</strong> Settings</a></p>
-<ul>
-<li><p><a href="Settings-Configuration-files">Settings - Configuration Files</a></p>
 </li>
-<li><p><a href="Settings-Premiere-Pro">Preferences - “Premiere Pro”</a></p>
-</li>
-<li><p><a href="Settings-Module-MIDI">“MIDI” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Remote">“Remote Control Panel” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Gamepad">“Gamepad/Joystick” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Multimedia-keys">“Multimedia Keys” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Smart-House">“Smart House” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Lights">“Lighting” module settings</a></p>
-<ul>
-<li><a href="Light-Repeaters-DMX512-ARTNET-MQTT">Repeater-converter “DMX512/ARTNET/MQTT”</a></li>
+<li>Control binding settings</li>
+<li>Configuration file<ul>
+<li><a href="Settings-Configuration-files">Configuration files</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h4 class="atx" id="audio-mixer">Audio Mixer</h4>
+<h3 class="atx" id="supported-midi-controllers">Supported MIDI controllers</h3>
+<p><u>MIDI-MT</u> supports any control panel that works with the device's standard MIDI port. For example, such as “<strong>WORLDE</strong>”, “<strong>Pyle Audio PMIDIPD30</strong>”, “<strong>LAUDIO</strong>”, “<strong>KORG</strong>”, produced by “<strong>FEGOO</strong>” and other compatible <code>USB MIDI Control Surface</code> .</p>
+<h3 class="atx" id="settings-for-interaction-with-midi-devices">Settings for interaction with MIDI devices</h3>
+<p>The “<strong>MIDI Devices</strong>” window displays available MIDI devices connected to the computer. You can select both MIDI input and output devices. For the module to operate, you must select at least one input device.</p>
 <ul>
-<li><a href="Audio-Mixer"><strong>MIDI-MT</strong> Audio Mixer Settings</a></li>
+<li>“<strong>Interval between clicks</strong>” regulates <code>contact bounce</code> , preventing false alarms. The time is set in milliseconds; the default value is 50 milliseconds.</li>
+<li>“<strong>Interval as long press</strong>” adjusts the timing of the button being treated as <code>long pressed</code> . Due to this parameter, it is possible to use the button to control two parameters at once. For example, the default setting of the buttons under the knobs turns on the <code>Solo</code> mode when <code>quick pressed</code> , and the <code>Mute</code> mode on the selected channel when <code>long pressed</code> . The time is set in milliseconds; the default value is 500 milliseconds.</li>
+<li>The “<strong>JOG Scene Filter</strong>” checkbox is used to normalize the scene number for the "JOG" control on some keyboards. If on your MIDI keyboard, when you move to another bank, the scene number on the “JOG” control does not match, try turning on this option. You can check this in the monitor window, which can be called up from the main menu.</li>
+<li>If “<strong>No output port is created</strong>” is checked, virtual MIDI output ports will not be created automatically. In this case, you need to select the output device from the list. This applies to output ports running the <code>Midi Mackie</code> protocol, but does not affect <code>MIDI proxy ports</code> , if selected.</li>
+<li>The number of <strong>MIDI Mackie</strong> ports can be selected from <code>0</code> to <code>3</code> . State <code>0</code> means "off". With this setting, you can simultaneously control three <code>Adobe</code> applications, such as Premiere Pro, After Effect, and Photoshop.</li>
+<li>The choice of the number of “<strong>MIDI Proxy</strong>” ports is possible from <code>0</code> to <code>16</code> . State <code>0</code> means "off". With <code>MIDI proxy</code> you can simultaneously control various applications, such as OBS Studio, Reaper and many others.</li>
 </ul>
-<h4 class="atx" id="portable-version">Portable version</h4>
-<ul>
-<li><a href="Portable-version">About the portable version of <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="command-line">Command line</h4>
-<ul>
-<li><a href="Command-Line-Options"><strong>MIDI-MT</strong> Command Line Options</a></li>
-</ul>
-<h4 class="atx" id="language-support">Language support</h4>
-<ul>
-<li><a href="Broadcast-into-different-languages">Broadcast into different languages</a></li>
-</ul>
+<img data-align="center" alt="" title="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-PLUGIN-Midi.png">
+
+<p>The “MIDI controls” group shows the number of configured MIDI elements in the loaded configuration file.</p>
+<p>The “<strong>Save Settings</strong>” button will allow you to save the changes you have made in the current session. To save in a configuration file, after saving the session settings, you must use the “<strong>Save settings</strong>” button on the main screen of the “<strong>Start</strong>” dialog.</p>
+<h6 class="atx" id="use-as-a-midi-proxy-server">Use as a MIDI proxy server</h6>
+<p>Enabling "MIDI Proxy" mode can be used to share a single <code>MIDI devices</code> between multiple applications. At the same time, the number of input ports is limited only by the number of connected <code>MIDI devices</code> .</p>
+<h6 class="atx" id="working-in-virtual-midi-hub-mode">Working in virtual MIDI hub mode</h6>
+<p>The virtual “MIDI hub” mode allows you to create a “common port” that will receive commands from all <code>MIDI devices</code> that you have connected. Now any software that is connected to the proxy output ports will receive commands sent from any connected <code>MIDI Control Surface</code> .</p>
+<h3 class="atx" id="control-binding-settings">Control Binding Settings</h3>
+<img data-align="center" alt="" title="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/ctrl9.png">
+
+<p>You can assign certain controls in the configuration editor. Details about the mapping of MIDI control keys to output commands are described on the page <a href="Settings-Configuration-files">“Configuration files”</a>.</p>
+<h4 class="atx" id="configuration-file">Configuration file</h4>
+<p>It is also possible to edit the configuration file in any editor you are familiar with. The main section of lighting control settings looks like this:</p>
+<pre><code class="fenced-code-block">    ...
+    },
+    "midi": {
+    &nbsp;&nbsp;&nbsp;&nbsp;"midictrl": {
+&nbsp;&nbsp;&nbsp;&nbsp;      "enable": true,
+&nbsp;&nbsp;&nbsp;&nbsp;      "outsystemport": false,
+&nbsp;&nbsp;&nbsp;&nbsp;      "jogscenefilter": true,
+&nbsp;&nbsp;&nbsp;&nbsp;      "out": 1,
+&nbsp;&nbsp;&nbsp;&nbsp;      "proxy": 0,
+&nbsp;&nbsp;&nbsp;&nbsp;      "btninterval": 50,
+&nbsp;&nbsp;&nbsp;&nbsp;      "btnlonginterval": 500
+    &nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;    "midiin": {
+&nbsp;&nbsp;&nbsp;&nbsp;      "enable": true,
+&nbsp;&nbsp;&nbsp;&nbsp;      "port": [
+&nbsp;&nbsp;&nbsp;&nbsp;        "W-FADER"
+&nbsp;&nbsp;&nbsp;&nbsp;      ]
+&nbsp;&nbsp;&nbsp;&nbsp;    },
+&nbsp;&nbsp;&nbsp;&nbsp;    "midiout": {
+&nbsp;&nbsp;&nbsp;&nbsp;      "enable": false
+&nbsp;&nbsp;&nbsp;&nbsp;    }
+    },
+    "units":[ ...
+    ... ]</code></pre>
 </article>
 </body>
 </html>

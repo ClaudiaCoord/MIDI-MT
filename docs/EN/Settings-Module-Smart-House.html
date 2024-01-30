@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIDI-MT - documentation in English</title>
+  <title>MIDI-MT - Managing smart home devices</title>
   <style>
   @font-face {
   font-family: octicons-link;
@@ -1340,64 +1340,109 @@ pre[class*="language-"] {
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9yZW5kZXJlci9hc3NldHMvdGhlbWVzL2V4cG9ydC9saWJlci50aGVtZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsWUFBWTs7QUFFWjs7RUFFRSxzSEFBc0g7RUFDdEgsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0NBQWtDO0FBQ3BDO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix1REFBdUQ7QUFDekQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixvREFBb0Q7QUFDdEQ7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLDBDQUEwQztBQUM1QztBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjtBQUNBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7O0VBTUUsZ0JBQWdCO0VBQ2hCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjtBQUNBO0VBQ0UsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsZ0JBQWdCO0FBQ2xCO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0FBQ2xCOztBQUVBOztFQUVFLG1CQUFtQjtFQUNuQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztBQUNiOztBQUVBOztFQUVFLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsZ0JBQWdCO0FBQ2xCIiwic291cmNlUm9vdCI6IiJ9 */</style>
 </head>
 <body>
-  <article class="markdown-body"><h4 class="atx" id="midi-mt-translator-easycontrol-midi-commands-in-midi-mackie-for-working-with-control-surfaces-in-adobe-products-and-more"><strong>MIDI-MT</strong> translator: EasyControl-MIDI commands in MIDI-Mackie for working with control surfaces in Adobe products and more..</h4>
-<p>Documentation in English.</p>
-<p><img alt="MIDI EasyControl 9 Device" src="https://claudiacoord.github.io/MIDI-MT/images/helper/web-present.png"></p>
-<p>MIDI-MT is a high-level application driver for <strong>USB MIDI</strong> control panels.</p>
-<h4 class="atx" id="dependencies">Dependencies</h4>
+  <article class="markdown-body"><h2 class="atx" id="managing-smart-home-devices">Managing smart home devices</h2>
 <ul>
-<li><a href="Dependencies">Dependencies required for installation</a></li>
-</ul>
-<h4 class="atx" id="installation">Installation</h4>
-<ul>
-<li><a href="Installation">Installing <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="launch">Launch</h4>
-<ul>
-<li><a href="Launch">First launch of <strong>MIDI-MT</strong></a></li>
-</ul>
-<h4 class="atx" id="settings">Settings</h4>
-<ul>
-<li><p><a href="Settings"><strong>MIDI-MT</strong> Settings</a></p>
-<ul>
-<li><p><a href="Settings-Configuration-files">Settings - Configuration Files</a></p>
-</li>
-<li><p><a href="Settings-Premiere-Pro">Preferences - “Premiere Pro”</a></p>
-</li>
-<li><p><a href="Settings-Module-MIDI">“MIDI” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Remote">“Remote Control Panel” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Gamepad">“Gamepad/Joystick” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Multimedia-keys">“Multimedia Keys” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Smart-House">“Smart House” module settings</a></p>
-</li>
-<li><p><a href="Settings-Module-Lights">“Lighting” module settings</a></p>
-<ul>
-<li><a href="Light-Repeaters-DMX512-ARTNET-MQTT">Repeater-converter “DMX512/ARTNET/MQTT”</a></li>
+<li>MQTT communication protocol support</li>
+<li>Settings for the Smart Home device control module</li>
+<li>Setting up an MQTT connection<ul>
+<li>SSL/TLS - certificate configuration</li>
+<li>PSK - setting up keys</li>
 </ul>
 </li>
+<li>MQTT server settings<ul>
+<li>MQTT topics (topics)</li>
 </ul>
 </li>
+<li>Control Binding Settings</li>
+<li>Configuration file</li>
+<li>Log file</li>
 </ul>
-<h4 class="atx" id="audio-mixer">Audio Mixer</h4>
+<pre><code class="fenced-code-block">    MQTT - Message Queuing Telemetry Transport</code></pre>
+<p>You can integrate <strong>a MIDI keyboard</strong> into your smart home system to control various devices.
+ Any <strong>Smart Home</strong> control environment that is based on the MQTT exchange protocol and includes an MQTT server is supported. In a Smart Home system, the MQTT protocol must be at least level <code>5.0</code> , it is possible to work with earlier versions, but stability and full functionality for all commands is not guaranteed.</p>
+<p>We recommend the following compatible solutions for Smart Home control:</p>
 <ul>
-<li><a href="Audio-Mixer"><strong>MIDI-MT</strong> Audio Mixer Settings</a></li>
+<li>any system based on the MQTT broker <code>mosquitto</code> ,</li>
+<li><a href="https://www.home-assistant.io/"><code>Home Assistant</code></a> ,</li>
+<li><a href="https://www.openhab.org/"><code>openHAB</code></a></li>
+<li><a href="https://mjdm.ru/"><code>MajorDoMo</code></a></li>
+<li><a href="https://www.iobroker.net/"><code>ioBroker</code></a></li>
+<li><a href="https://www.domoticz.com/"><code>Domoticz</code></a> ,</li>
+<li><a href="https://www.mycontroller.org/"><code>MyController</code></a></li>
+<li><a href="https://intrahouse.ru/ih-smart-home/"><code>IntraHouse</code></a> ,</li>
+<li>and so on..</li>
 </ul>
-<h4 class="atx" id="portable-version">Portable version</h4>
+<h3 class="atx" id="settings-for-the-smart-home-device-control-module">Settings for the Smart Home device control module</h3>
 <ul>
-<li><a href="Portable-version">About the portable version of <strong>MIDI-MT</strong></a></li>
+<li>In the “<strong>MQTT server</strong>” field you must specify the IP address of the MQTT server.</li>
+<li>The “<strong>Port</strong>” field specifies on which port to send requests to the MQTT server, the default port number is <code>1883</code> .</li>
+<li>The “<strong>Login</strong>” field must correspond to the account on the MQTT server.</li>
+<li>The “<strong>Password</strong>” field must also correspond to the account on the MQTT server.</li>
+<li>“<strong>PSK key</strong>” is another form of authorization, instead of the login/password pair. Only one thing is used.</li>
+<li>The “<strong>SSL/TLS enabled</strong>” option allows you to establish a secure connection if the MQTT server supports it.</li>
+<li>The “<strong>Self-signed certificate</strong>” option allows you to establish a connection with a server that has a self-signed certificate installed.</li>
+<li>The “<strong>CA certificate</strong>” field indicates the path to the MQTT server root certificate file, if you were issued one.</li>
+<li>The “<strong>MQTT topic prefix</strong>” field indicates an optional prefix to “<strong>MQTT topics</strong>”.</li>
+<li>Selecting “<strong>MQTT session logging level</strong>” turns on or off the recording of debugging information about network exchange and commands to the general log file.</li>
 </ul>
-<h4 class="atx" id="command-line">Command line</h4>
+<img data-align="center" alt="" title="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-PLUGIN-SmartHouse.png">
+
+<h5 class="atx" id="lessugreatersetting-up-an-mqtt-connectionlessugreater"><strong><u>Setting up an MQTT connection</u></strong></h5>
+<h6 class="atx" id="ssltls---certificate-configuration">SSL/TLS - certificate configuration</h6>
+<p>The certificate file, the path to which you must specify in the configuration, must consist, at a minimum, of the <code>CA</code> (Certificate Authority) certificate that signed the certificate of your MQTT server. If you have a chain of necessary certificates, then you need to place the root certificate in a separate folder, and add the remaining necessary certificates to it. For example <code>Let's Encrypt</code> 's root certificate is named <code>R3</code> . If you are using a certificate from this company, then you just need to specify the path to the <code>R3.cert</code> or <code>R3.pem</code> file in <code>PEM</code> format.</p>
+<p>In the case of a self-signed certificate, it is enough to indicate it by checking the box of the same name. In this case, the MQTT server certificate will be the same as the CA certificate.</p>
+<p>To activate SSL/TLS, check the appropriate box. Use these options only if you want to encrypt communications between the client and server. On a local network, this is usually not worth doing. Since this increases the load on both the client and the server.</p>
+<h6 class="atx" id="psk---setting-up-keys">PSK - setting up keys</h6>
+<p>Working with PSK keys is not compatible with SSL/TLS settings. The connection can operate only in one of the specified modes; when all values ​​are filled in, priority is given to the connection based on PSK keys. PSK keys are used, as a rule, when working with external servers, the authorization settings of which occur through their own Web interface. For example <a href="https://io.adafruit.com/api/docs/#about-the-api-docs"><code>AdaFruit MQTT</code></a> or <a href="https://www.hivemq.com/public-mqtt-broker/"><code>HiveMQ Public MQTT Broker</code></a> .</p>
+<p>The whole setup boils down to getting the key and copying it into the appropriate field. The second parameter of the PSK key binding is your login to the MQTT server, since you have already filled it in above, these are all the settings that can be applied.</p>
+<h3 class="atx" id="mqtt-server-settings">MQTT server settings</h3>
+<h5 class="atx" id="lessugreatermqtt-topics-topicslessugreater"><strong><u>MQTT topics (topics)</u></strong></h5>
+<p>MIDI-MT uses the following MQTT topic structure:</p>
+<pre><code class="fenced-code-block">    /sensor/&lt;login for MQTT server&gt;/&lt;control identifier&gt;/&lt;value name&gt;</code></pre>
+<p>Example of topics used. Let's assume that your login for the MQTT server is <code>ectrl9</code> , and the identifier of the control that smoothly regulates the lighting is <code>av1</code> , and the control that turns the light on or off has the identifier <code>b11</code> . In this case, control commands will be sent to the following topics:</p>
+<pre><code class="fenced-code-block">    /sensor/ectrl9/av1/level = from 0 to 127
+    /sensor/ectrl9/b11/onoff = 1 or 0</code></pre>
+<p>The control name is set automatically, in accordance with the control identifier selected in the editor. You can get it by referring to the topic:</p>
+<pre><code class="fenced-code-block">    /sensor/ectrl9/av1/title = "level 1"
+    /sensor/ectrl9/b11/title = "on/off 1"</code></pre>
+<p>For some scenarios, information about the MIDI keyboard connection status will be useful. You can check its current status by referring to the topic:</p>
+<pre><code class="fenced-code-block">    /sensor/ectrl9/state = 1 or 0</code></pre>
+<h3 class="atx" id="control-binding-settings">Control Binding Settings</h3>
+<p>The necessary controls can be configured in the configuration editor. MQTT connection settings are saved in the configuration, so it is possible to have an unlimited number of customized configurations that can be loaded as needed.</p>
+<p><img alt="" src="https://claudiacoord.github.io/MIDI-MT/images/helper/MIDI-MT-PLUGIN-SmartHouse-edit1.png"></p>
+<p>If you are not well versed in the MQTT protocol, or in the Smart Home device, then we recommend reading the book:</p>
 <ul>
-<li><a href="Command-Line-Options"><strong>MIDI-MT</strong> Command Line Options</a></li>
+<li><a href="https://www.hivemq.com/download-mqtt-ebook/">MQTT Essentials E-Book</a> ,
+   or there is an online option:</li>
+<li><a href="https://www.hivemq.com/mqtt-essentials/">MQTT Essentials</a> and <a href="https://www.hivemq.com/mqtt-5/">MQTT version 5 Essentials</a> .</li>
 </ul>
-<h4 class="atx" id="language-support">Language support</h4>
-<ul>
-<li><a href="Broadcast-into-different-languages">Broadcast into different languages</a></li>
-</ul>
+<h4 class="atx" id="configuration-file">Configuration file</h4>
+<p>The settings in the configuration file look like this:</p>
+<pre><code class="fenced-code-block">{
+    ...
+  &nbsp;&nbsp;"mqtt": {
+    &nbsp;&nbsp;&nbsp;&nbsp;"enable": true,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 'Smart Home' settings block:
+&nbsp;&nbsp;&nbsp;&nbsp;    "host": "192.168.22.1",&nbsp;&nbsp;&nbsp;&nbsp;// customer account
+&nbsp;&nbsp;&nbsp;&nbsp;    "login": "ctrl9",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// from MQTT server
+&nbsp;&nbsp;&nbsp;&nbsp;    "pass": "12345",
+&nbsp;&nbsp;&nbsp;&nbsp;    "prefix": "",
+&nbsp;&nbsp;&nbsp;&nbsp;    "sslpsk": "",
+&nbsp;&nbsp;&nbsp;&nbsp;    "certcapath": "",
+&nbsp;&nbsp;&nbsp;&nbsp;    "port": 1883,
+&nbsp;&nbsp;&nbsp;&nbsp;    "loglevel": 16,
+&nbsp;&nbsp;&nbsp;&nbsp;    "isssl": false,
+&nbsp;&nbsp;&nbsp;&nbsp;    "selfsigned": false
+  &nbsp;&nbsp;},
+    ...
+}</code></pre>
+<h4 class="atx" id="log-file">Log file</h4>
+<p>As a practical recommendation, the logging level can help in debugging related to the first connection to the server. In the future, it is better to turn it off completely, as this creates additional load for the server, since it broadcasts all the information about its own actions. The log level has nothing to do with local messages.</p>
+<h6 class="atx" id="example-log-file">Example log file</h6>
+<pre><code class="fenced-code-block">[07-25 -&gt; 16:58:38] Common::MQTT::on_log: Client ctrl9-4687392 sending CONNECT
+[07-25 -&gt; 16:58:38] Common::MQTT::on_log: Client ctrl9-4687392 sending PUBLISH (d0, q0, r1, m1, 'sensor/ctrl9/state', ... (1 bytes))
+[07-25 -&gt; 16:58:38] Common::MQTT::SmartHome::Start: The Smart-Home control service is running.
+[07-25 -&gt; 16:58:38] Common::MQTT::on_log: Client ctrl9-4687392 sending PUBLISH (d0, q0, r1, m2, 'sensor/ctrl9/b37/title', ... (9 bytes))
+...</code></pre>
 </article>
 </body>
 </html>
