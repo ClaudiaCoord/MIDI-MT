@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>MIDI-MT - Модуль «Панель дистанционного управления»</title>
+  <title>MIDI-MT - API Модуля «Панель дистанционного управления»</title>
   <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,11 +25,26 @@ vertical-align: middle;
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">MIDI-MT - Модуль «Панель дистанционного
+<h1 class="title">MIDI-MT - API Модуля «Панель дистанционного
 управления»</h1>
 </header>
-<h2 id="встроенное-приложение-дистанционного-контроля">Встроенное
-приложение дистанционного контроля</h2>
+<h2 id="api-дистанционного-контроля">API дистанционного контроля</h2>
+<p>Вы можете самостоятельно использовать «<strong>API</strong>» модуля
+дистанционного управления в сценариях в различных средах выполнения.
+Транспортом взаимодействия с «<strong>MIDI-MT</strong>» является
+<code>Websocket</code>, команды и ответы имеют формат <code>Json</code>.
+Связь реализована только по протоколу <code>HTTP</code>, то есть
+поддерживается только стандартный префикс <code>ws://</code>.</p>
+<h3 id="запросы-клиента">Запросы клиента</h3>
+<ul>
+<li><code>{ &quot;action&quot;: &quot;config&quot; }</code> - запрос конфигурации у
+сервера.</li>
+<li><code>{ &quot;action&quot;: &quot;update&quot; }</code></li>
+<li><code>{ &quot;action&quot;: &quot;&quot; }</code></li>
+<li><code>{ &quot;action&quot;: &quot;&quot; }</code></li>
+<li><code>{ &quot;action&quot;: &quot;&quot; }</code></li>
+</ul>
+<h3 id="ответы-сервера">Ответы сервера</h3>
 <ul>
 <li><p>Настройки модуля «Панель дистанционного управления»</p></li>
 <li><p>Авторизация и прочие защитные меры</p></li>
