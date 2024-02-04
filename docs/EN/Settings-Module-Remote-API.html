@@ -7,8 +7,8 @@
   <meta name="author" content="MIDI-MT © CC" />
   <meta name="keywords" content="usb,midi,control,surface,keyboard,easycontrol,easycontrol9,mqtt,lights,dmx,dmx512,artnet,soundbar,premiere
 pro,proxy,driver" />
-  <meta name="description" content="MIDI-MT - это драйвер приложений высокого уровня, для USB MIDI панелей управлений" />
-  <title>MIDI-MT - API Модуля «Панель дистанционного управления»</title>
+  <meta name="description" content="MIDI-MT is a high-level application driver for USB MIDI control panels" />
+  <title>MIDI-MT - API of the Remote Control Panel Module</title>
   <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,129 +93,141 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">MIDI-MT - API Модуля «Панель дистанционного
-управления»</h1>
-<p class="subtitle">MIDI-MT Документация на Русском языке</p>
+<h1 class="title">MIDI-MT - API of the Remote Control Panel Module</h1>
+<p class="subtitle">MIDI-MT Documentation in English</p>
 <p class="author">MIDI-MT © CC</p>
 </header>
-<h2 id="api-дистанционного-управления">API дистанционного
-управления</h2>
+<h2 id="remote-control-api">Remote Control API</h2>
 <ul>
-<li><p><a href="#запросы-клиента">Запросы клиента</a></p></li>
-<li><p><a href="#ответы-сервера">Ответы сервера</a></p></li>
-<li><p><a href="#примеры-web-socket-приложений">Примеры Web Socket
-приложений</a></p>
+<li><p><a href="#client-requests">Client requests</a></p></li>
+<li><p><a href="#server-responses">Server responses</a></p></li>
+<li><p><a href="#example-web-socket-applications">Example Web Socket
+Applications</a></p>
 <ul>
 <li><p><a href="#javascript-web-socket">JavaScript Web
 Socket</a></p></li>
 <li><p><a href="#python-web-socket">Python Web Socket</a></p></li>
 </ul></li>
-<li><p><a href="Settings-Configuration-files.html">Файлы
-конфигурации</a></p></li>
+<li><p><a href="Settings-Configuration-files.html">Configuration
+files</a></p></li>
 </ul>
-<p>Вы можете самостоятельно использовать «<strong>API</strong>» модуля
-дистанционного управления в сценариях в различных средах выполнения.
-Транспортом взаимодействия с «<strong>MIDI-MT</strong>» является
-<code>Web Socket</code>, команды и ответы имеют формат
-<code>Json</code>. Связь реализована только по протоколу
-<code>HTTP</code>, то есть поддерживается только стандартный префикс
-<code>ws://</code>. Решение рассчитано на работу в локальной сети. При
-необходимости, для доступа по протоколу <code>HTTPS</code>, можно
-поставить любой фронт-енд с поддержкой <a href="https://www.nginx.com/blog/realtime-applications-nginx/"><code>HTTPS Web Socket</code></a>,
-например <a href="https://nginx.org/en/docs/http/websocket.html"><code>nginx</code></a>.</p>
-<h3 id="запросы-клиента">Запросы клиента</h3>
+<p>You can use the remote control module’s “<strong>API</strong>”
+yourself in scripts in various runtime environments. The transport for
+interaction with “<strong>MIDI-MT</strong>” is <code>Web Socket</code>,
+commands and responses are in <code>Json</code> format. Communication is
+implemented only via the <code>HTTP</code> protocol, that is, only the
+standard <code>ws://</code> prefix is ​​supported. The solution is
+designed to work on a local network. If necessary, for access via the
+<code>HTTPS</code> protocol, you can install any front-end that supports
+<a href="https://www.nginx.com/blog/realtime-applications-nginx/"><code>HTTPS Web Socket</code></a>,
+for example <a href="https://nginx.org/en/docs/http/websocket.html"><code>nginx</code></a>.</p>
+<h3 id="client-requests">Client requests</h3>
 <ul>
-<li><p><code>&quot;action&quot;: &quot;config&quot;</code> - запрос конфигурации у сервера.
-Подразумевает ответ в виде структуры секции «units» из текущей
-конфигурации сервера.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;config&quot;</span><span class="at"> </span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;change&quot;</code> - отправка изменений параметров
-контрола. Отсылаемые параметры контрола, как то: <code>scene</code>,
+<li><code>&quot;action&quot;: &quot;config&quot;</code> - request configuration from the
+server. Implies a response in the form of the structure of the “units”
+section from the current server configuration.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">   </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;config&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<ul>
+<li><code>&quot;action&quot;: &quot;change&quot;</code> - sending changes to control
+parameters. The sent control parameters, such as: <code>scene</code>,
 <code>id</code>, <code>type</code>, <code>target</code>,
-<code>longtarget</code> - должны соответствовать параметрам в
-конфигурации сервера.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;change&quot;</span><span class="kw">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;unit&quot;</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;scene&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">           // сцена контрола</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;id&quot;</span><span class="at">:xx</span><span class="kw">,</span><span class="at">               // номер контрола</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;type&quot;</span><span class="at">:x</span><span class="kw">,</span><span class="at">              // тип контрола</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;target&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">          // группа | назначение</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;longtarget&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">      // назначение</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="fu">&quot;onoff&quot;</span><span class="kw">:</span><span class="at"> true | false</span><span class="kw">,</span><span class="at"> // новое значение</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="fu">&quot;value&quot;</span><span class="kw">:</span><span class="at"> 0-127         // новое значение</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="kw">}</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;wakeup&quot;</code> - запрос на выход сервера из
-«спящего режима». В некоторых случаях, в <code>Windows 10/11</code>, в
-«спящем режиме» отключаются часть аудио источников и <code>USB</code>
-устройств.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;wakeup&quot;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;windowtotop&quot;</code> - отправка имени файла
-приложения, которое необходимо поместить на передний план. Необходимо
-для использования мультимеда кнопок управления воспроизведением.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;windowtotop&quot;</span><span class="kw">,</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;name&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;application-file-name.exe&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;getlog&quot;</code> - отправка актуального лог файла
-в формате <code>Base64</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;getlog&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
+<code>longtarget</code> - must correspond to the parameters in the
+server configuration.</li>
 </ul>
-<h3 id="ответы-сервера">Ответы сервера</h3>
-<p>Все ответы сервера, так же как и запросы выполняются в
-<code>Json</code> контейнере.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">   </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;change&quot;</span><span class="kw">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">   </span><span class="fu">&quot;unit&quot;</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;scene&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">           // control scene </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;id&quot;</span><span class="at">:xx</span><span class="kw">,</span><span class="at">               // control key</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;type&quot;</span><span class="at">:x</span><span class="kw">,</span><span class="at">              // control type</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;target&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">          // group | target</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="st">&quot;longtarget&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">      // target</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="fu">&quot;onoff&quot;</span><span class="kw">:</span><span class="at"> true | false</span><span class="kw">,</span><span class="at"> // new value</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="fu">&quot;value&quot;</span><span class="kw">:</span><span class="at"> 0-127         // new value</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">   </span><span class="kw">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
 <ul>
-<li><p>при «отправке измененых параметров», «запросе на выход сервера из
-спящего режима» и «отправке имени файла приложения» ответы со стороны
-сервера не предусмотрены.</p></li>
-<li><p>на «запрос конфигурации у сервера» - отправляется полная
-конфигурация секции <code>units</code> из <a href="Settings-Configuration-files.html">файла конфигурации</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;config&quot;</span><span class="fu">,</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;units&quot;</span><span class="fu">:</span><span class="ot">[</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">{</span><span class="dt">&quot;scene&quot;</span><span class="fu">:</span><span class="dv">177</span><span class="fu">,</span><span class="dt">&quot;id&quot;</span><span class="fu">:</span><span class="dv">22</span><span class="fu">,</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">&quot;target&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">&quot;longtarget&quot;</span><span class="fu">:</span><span class="dv">255</span><span class="fu">,</span><span class="dt">&quot;onoff&quot;</span><span class="fu">:</span><span class="kw">false</span><span class="fu">,</span><span class="dt">&quot;value&quot;</span><span class="fu">:</span><span class="dv">64</span><span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">{</span><span class="dt">&quot;scene&quot;</span><span class="fu">:</span><span class="dv">177</span><span class="fu">,</span><span class="dt">&quot;id&quot;</span><span class="fu">:</span><span class="dv">13</span><span class="fu">,</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">&quot;target&quot;</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">&quot;longtarget&quot;</span><span class="fu">:</span><span class="dv">255</span><span class="fu">,</span><span class="dt">&quot;onoff&quot;</span><span class="fu">:</span><span class="kw">true</span><span class="fu">,</span><span class="dt">&quot;value&quot;</span><span class="fu">:</span><span class="dv">107</span><span class="fu">,</span><span class="dt">&quot;app&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="st">&quot;App1&quot;</span><span class="ot">,</span><span class="st">&quot;App2&quot;</span><span class="ot">]</span><span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>     <span class="er">...</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> <span class="ot">]</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div></li>
-<li><p>на «запрос отправки лог файла» - отправляется актуальный на
-текущий момент лог файл в формате <code>Base64</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;getlog&quot;</span><span class="fu">,</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;log&quot;</span><span class="fu">:</span> <span class="st">&quot;BASE64-content&quot;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;changed&quot;</code> - отправляется в случае
-изменения параметров контрола (<code>unit</code>). Генерируется
-сервером.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;changed&quot;</span><span class="fu">,</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;unit&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<li><code>&quot;action&quot;: &quot;wakeup&quot;</code> - a request to exit the server from
+sleep mode. In some cases, in <code>Windows 10/11</code>, some audio
+sources and <code>USB</code> devices are turned off in “sleep
+mode”.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">   </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;wakeup&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<ul>
+<li><code>&quot;action&quot;: &quot;windowtotop&quot;</code> - sends the filename of the
+application that needs to be brought to the foreground. Required to use
+multimedia playback control buttons.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">   </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;windowtotop&quot;</span><span class="kw">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">   </span><span class="fu">&quot;name&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;application-file-name.exe&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<ul>
+<li><code>&quot;action&quot;: &quot;getlog&quot;</code> - sending the current log file in
+<code>Base64</code> format.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">   </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;getlog&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<h3 id="server-responses">Server responses</h3>
+<p>All server responses, as well as requests, are executed in a
+<code>Json</code> container.</p>
+<ul>
+<li><p>When “sending changed parameters”, “requesting the server to wake
+up from sleep mode” and “sending application file name”, there are no
+responses from the server.</p></li>
+<li><p>to “request configuration from server” - the full configuration
+of the <code>units</code> section from <a href="Settings-Configuration-files.html">the configuration file</a> is
+sent.</p></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;config&quot;</span><span class="fu">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>   <span class="dt">&quot;units&quot;</span><span class="fu">:</span><span class="ot">[</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">{</span><span class="dt">&quot;scene&quot;</span><span class="fu">:</span><span class="dv">177</span><span class="fu">,</span><span class="dt">&quot;id&quot;</span><span class="fu">:</span><span class="dv">22</span><span class="fu">,</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">&quot;target&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">&quot;longtarget&quot;</span><span class="fu">:</span><span class="dv">255</span><span class="fu">,</span><span class="dt">&quot;onoff&quot;</span><span class="fu">:</span><span class="kw">false</span><span class="fu">,</span><span class="dt">&quot;value&quot;</span><span class="fu">:</span><span class="dv">64</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">{</span><span class="dt">&quot;scene&quot;</span><span class="fu">:</span><span class="dv">177</span><span class="fu">,</span><span class="dt">&quot;id&quot;</span><span class="fu">:</span><span class="dv">13</span><span class="fu">,</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">&quot;target&quot;</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">&quot;longtarget&quot;</span><span class="fu">:</span><span class="dv">255</span><span class="fu">,</span><span class="dt">&quot;onoff&quot;</span><span class="fu">:</span><span class="kw">true</span><span class="fu">,</span><span class="dt">&quot;value&quot;</span><span class="fu">:</span><span class="dv">107</span><span class="fu">,</span><span class="dt">&quot;app&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="st">&quot;App1&quot;</span><span class="ot">,</span><span class="st">&quot;App2&quot;</span><span class="ot">]</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="er">...</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>   <span class="ot">]</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<ul>
+<li>to the “request to send a log file” - the currently relevant log
+file is sent in <code>Base64</code> format:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>   <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;getlog&quot;</span><span class="fu">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   <span class="dt">&quot;log&quot;</span><span class="fu">:</span> <span class="st">&quot;BASE64-content&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<ul>
+<li><code>&quot;action&quot;: &quot;changed&quot;</code> - sent if the control parameters
+(<code>unit</code>) change. Generated by the server.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;changed&quot;</span><span class="fu">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>   <span class="dt">&quot;unit&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>   <span class="dt">&quot;scene&quot;</span><span class="fu">:</span><span class="dv">177</span><span class="fu">,</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>   <span class="dt">&quot;id&quot;</span><span class="fu">:</span><span class="dv">22</span><span class="fu">,</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>   <span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>   <span class="dt">&quot;target&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>   <span class="dt">&quot;longtarget&quot;</span><span class="fu">:</span><span class="dv">255</span><span class="fu">,</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>     <span class="dt">&quot;onoff&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>     <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="dv">127</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">}</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div></li>
-</ul>
-<h3 id="примеры-web-socket-приложений">Примеры Web Socket
-приложений</h3>
-<p>«IP адрес» и «порт» в приложении должны соответствовать текущей <a href="Settings-Module-Remote.html">конфигурации</a> работающего
-сервера.</p>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       <span class="dt">&quot;onoff&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>       <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="dv">127</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="example-web-socket-applications">Example Web Socket
+Applications</h3>
+<p>The “IP address” and “port” in the application must match the current
+<a href="Settings-Module-Remote.html">configuration</a> of the running
+server.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="er">&quot;remote&quot;:</span> <span class="fu">{</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="dt">&quot;port&quot;</span><span class="fu">:</span> <span class="dv">8888</span><span class="fu">,</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="dt">&quot;host&quot;</span><span class="fu">:</span> <span class="st">&quot;x.x.x.x&quot;</span><span class="fu">,</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="er">...</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="er">,</span></span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="dt">&quot;port&quot;</span><span class="fu">:</span> <span class="dv">8888</span><span class="fu">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="dt">&quot;host&quot;</span><span class="fu">:</span> <span class="st">&quot;x.x.x.x&quot;</span><span class="fu">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="er">...</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="er">,</span></span></code></pre></div>
 <h5 id="javascript-web-socket">JavaScript Web Socket</h5>
 <div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> socket <span class="op">=</span> <span class="kw">new</span> <span class="bu">WebSocket</span>(<span class="st">&quot;ws://x.x.x.x:8888/data&quot;</span>)<span class="op">;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -241,11 +253,11 @@ Socket</a></p></li>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>socket<span class="op">.</span><span class="at">onerror</span> <span class="op">=</span> <span class="kw">function</span>(error) {</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`[error]`</span>)<span class="op">;</span></span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
-<p>Посмотреть этот пример на <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/example/JavaScript/">GitHub</a>.</p>
-<p>Подробнее о программировании <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications">JavaScript
-Web Socket</a> на <strong>MDN Web docs</strong>.</p>
+<p>View this example on <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/example/JavaScript/">GitHub</a>.</p>
+<p>Learn more about <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications">JavaScript
+Web Socket</a> programming on <strong>the MDN Web docs</strong>.</p>
 <h5 id="python-web-socket">Python Web Socket</h5>
-<p>Вероятно вам придется установить пакеты:</p>
+<p>You will probably have to install packages:</p>
 <ul>
 <li><code>pip install websocket-client</code></li>
 <li><code>pip install rel</code></li>
@@ -279,8 +291,9 @@ Web Socket</a> на <strong>MDN Web docs</strong>.</p>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>ws.run_forever(dispatcher<span class="op">=</span>rel, reconnect<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>rel.signal(<span class="dv">2</span>, rel.abort)</span>
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>rel.dispatch()  </span></code></pre></div>
-<p>Посмотреть этот пример на <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/example/Python/">GitHub</a>.</p>
-<p>Подробнее о программировании <a href="https://websocket-client.readthedocs.io/en/latest/examples.html">Python
-Web Socket</a> в <strong>websocket-client</strong> documentation.</p>
+<p>View this example on <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/example/Python/">GitHub</a>.</p>
+<p>Learn more about <a href="https://websocket-client.readthedocs.io/en/latest/examples.html">Python
+Websocket</a> programming, <strong>websocket-client</strong>
+documentation.</p>
 </body>
 </html>
