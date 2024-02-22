@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="description" content="MIDI-MT - это драйвер приложений высокого уровня, для USB MIDI панелей управлений" />
-  <title>MIDI-MT - API Модуля «Панель дистанционного управления»</title>
+  <title>MIDI-MT - Модуль управление выполнением пользовательских «Скриптов»</title>
   <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,201 +93,174 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">MIDI-MT - API Модуля «Панель дистанционного
-управления»</h1>
+<h1 class="title">MIDI-MT - Модуль управление выполнением
+пользовательских «Скриптов»</h1>
 <p class="subtitle">MIDI-MT Документация на Русском языке</p>
 </header>
-<h2 id="api-дистанционного-управления">API дистанционного
-управления</h2>
+<h2 id="мрдуль-управления-выполнением-пользовательских-скриптов">Мрдуль
+управления выполнением пользовательских скриптов</h2>
 <ul>
-<li><p><a href="#запросы-клиента">Запросы клиента</a></p></li>
-<li><p><a href="#ответы-сервера">Ответы сервера</a></p></li>
-<li><p><a href="#примеры-web-socket-приложений">Примеры Web Socket
-приложений</a></p>
+<li><p><a href="#назначение-сценариев-в-midi-mt">Назначение сценариев в
+MIDI-MT</a></p></li>
+<li><p><a href="#группы-аудио-микшер-и-midi-контроль">Сценарии в группах
+«Аудио Микшер» и «MIDI контроль»</a></p></li>
+<li><p><a href="#группы-управления-устройствами-умного-дома-и-управление-освещением">Сценарии
+в группах «Управления устройствами Умного Дома» и «Управление
+Освещением»</a></p></li>
+<li><p><a href="#настройки-модуля-управления-сценариями">Настройки
+модуля управления сценариями</a></p></li>
+<li><p><a href="#конфигурационный-файл">Конфигурационный
+файл</a></p></li>
+<li><p><a href="#краткие-сведения-о-основных-характеристиках-языка-chaiscript">Краткие
+сведения о основных характеристиках языка ChaiScript</a></p>
 <ul>
-<li><p><a href="#javascript-web-socket">JavaScript Web
-Socket</a></p></li>
-<li><p><a href="#python-web-socket">Python Web Socket</a></p></li>
+<li><p><a href="#поддерживаемые-типы">ChaiScript - поддерживаемые
+типы</a></p></li>
+<li><p><a href="#документация-и-примеры-chaiscript">ChaiScript -
+документация и примеры</a></p></li>
 </ul></li>
-<li><p><a href="Settings-Configuration-files.html">Файлы
-конфигурации</a></p></li>
+<li><p><a href="VM-Script-MMTScriptTester.html">Отладка при написании
+собственных сценариев</a></p></li>
 </ul>
-<p>Вы можете самостоятельно использовать «<strong>API</strong>» модуля
-дистанционного управления в сценариях в различных средах выполнения.
-Транспортом взаимодействия с «<strong>MIDI-MT</strong>» является
-<code>Web Socket</code>, команды и ответы имеют формат
-<code>Json</code>. Связь реализована только по протоколу
-<code>HTTP</code>, то есть поддерживается только стандартный префикс
-<code>ws://</code>. Решение рассчитано на работу в локальной сети. При
-необходимости, для доступа по протоколу <code>HTTPS</code>, можно
-поставить любой фронт-енд с поддержкой <a href="https://www.nginx.com/blog/realtime-applications-nginx/"><code>HTTPS Web Socket</code></a>,
-например <a href="https://nginx.org/en/docs/http/websocket.html"><code>nginx</code></a>.</p>
-<h3 id="запросы-клиента">Запросы клиента</h3>
-<p>Конечной точкой в <code>URL</code> сервера, всегда является тег
-<code>/data</code>.</p>
+<pre><code>    Скриптовым ядром MIDI-MT является ChaiScript
+    ChaiScript - это типизированный декларативный язык с синтаксисом, аналогичным C++, TypeScript и JavaScript.</code></pre>
+<h4 id="назначение-сценариев-в-midi-mt">Назначение сценариев в
+MIDI-MT</h4>
+<p>Вы можете использовать собственные сценарии для автоматизации
+процессов управления в различных группах. Пакетное управление с помощью
+выполняемых скриптов может расширить ваши возможности, например:</p>
 <ul>
-<li><p><code>&quot;action&quot;: &quot;config&quot;</code> - запрос конфигурации у сервера.
-Подразумевает ответ в виде структуры секции «units» из текущей
-конфигурации сервера.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;config&quot;</span><span class="at"> </span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;change&quot;</code> - отправка изменений параметров
-контрола. Отсылаемые параметры контрола, как то: <code>scene</code>,
-<code>id</code>, <code>type</code>, <code>target</code>,
-<code>longtarget</code> - должны соответствовать параметрам в
-конфигурации сервера.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;change&quot;</span><span class="kw">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;unit&quot;</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="st">&quot;scene&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">           // сцена контрола</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="st">&quot;id&quot;</span><span class="at">:xx</span><span class="kw">,</span><span class="at">               // номер контрола</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="st">&quot;type&quot;</span><span class="at">:x</span><span class="kw">,</span><span class="at">              // тип контрола</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="st">&quot;target&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">          // группа | назначение</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="st">&quot;longtarget&quot;</span><span class="at">:xxx</span><span class="kw">,</span><span class="at">      // назначение</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="fu">&quot;onoff&quot;</span><span class="kw">:</span><span class="at"> true | false</span><span class="kw">,</span><span class="at"> // новое значение</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">     </span><span class="fu">&quot;value&quot;</span><span class="kw">:</span><span class="at"> 0-127         // новое значение</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="kw">}</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;wakeup&quot;</code> - запрос на выход компьютера из
-«спящего режима». В некоторых случаях, в <code>Windows 10/11</code>, в
-«спящем режиме» отключаются часть аудио источников и <code>USB</code>
-устройств.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;wakeup&quot;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;windowtotop&quot;</code> - отправка имени файла
-приложения, которое необходимо поместить на передний план. Необходимо
-для использования мультимеда кнопок управления воспроизведением.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;windowtotop&quot;</span><span class="kw">,</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;name&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;application-file-name.exe&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;getlog&quot;</code> - запрос на получение актуального
-лог файла в формате <code>Base64</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at"> </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="fu">&quot;action&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;getlog&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div></li>
+<li>применение заранее запланированной схемы уровней на нескольких
+регуляторах,</li>
+<li>решение задач одновременной, плавной регулировки уровней на многих
+регуляторах,</li>
+<li>одновременное включение или выключение множества источников,</li>
+<li>различные световые эффекты и схемы, применяемые нажатием одной
+кнопки,</li>
+<li>выполнение последовательности команд для продуктов
+<code>Adobe</code></li>
 </ul>
-<h3 id="ответы-сервера">Ответы сервера</h3>
-<p>Все ответы сервера, так же как и запросы упаковываются в
-<code>Json</code> контейнер.</p>
+<p>Скриптовым ядром является <code>ChaiScript</code>, язык сценариев с
+открытым исходным кодом, созданный Джейсоном Тернером. Синтаксис
+скриптов <code>ChaiScript</code> почти идентичен
+<code>JavaScript</code>, и фактически укладываться в стандарт
+<code>ECMASCRIPT</code>, с небольшими дополнениями. Ниже будут приведены
+основные особенности этого языка сценариев.</p>
+<h4 id="группы-аудио-микшер-и-midi-контроль">Группы «Аудио Микшер» и
+«MIDI контроль»</h4>
+<p>Скрипты можно рассматривать как <code>макросы</code> в примении к
+группе «<strong>Аудио Микшер</strong>» или к группе «<strong>MIDI
+контроля</strong>» для управления продуктами <code>Adobe</code>, как
+<code>Premiere Pro</code>, <code>After Effects</code>,
+<code>Audition</code> и так далее. Последовательный нбор команд,
+прописанных в скрипте, можно выполнить нажатием одной кнопки. Это не
+только экономит время, но и позволяет задействовать меньшее количество
+физических кнопок, при сохранении той же функциональности.</p>
+<h4 id="группы-управления-устройствами-умного-дома-и-управление-освещением">Группы
+«Управления устройствами Умного Дома» и «Управление Освещением»</h4>
+<p>Скрипты можно использовать для создания как
+<code>сценариев управления</code> для группы «<strong>Умного
+Дома</strong>», так и для создания собственных уникальных световых
+эффектов и решений для групп «<strong>Управления Освещением</strong>» и
+«<strong>Умного Дома</strong>».</p>
+<h3 id="настройки-модуля-управления-сценариями">Настройки модуля
+«Управления Сценариями»</h3>
 <ul>
-<li><p>при «отправке измененых параметров», «запросе на выход сервера из
-спящего режима» и «отправке имени файла приложения» ответы со стороны
-сервера не предусмотрены.</p></li>
-<li><p>на «запрос конфигурации у сервера» - отправляется содержимое
-секции <code>units</code> из загруженного <a href="Settings-Configuration-files.html">файла конфигурации</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;config&quot;</span><span class="fu">,</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;units&quot;</span><span class="fu">:</span><span class="ot">[</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">{</span><span class="dt">&quot;scene&quot;</span><span class="fu">:</span><span class="dv">177</span><span class="fu">,</span><span class="dt">&quot;id&quot;</span><span class="fu">:</span><span class="dv">22</span><span class="fu">,</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">&quot;target&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">&quot;longtarget&quot;</span><span class="fu">:</span><span class="dv">255</span><span class="fu">,</span><span class="dt">&quot;onoff&quot;</span><span class="fu">:</span><span class="kw">false</span><span class="fu">,</span><span class="dt">&quot;value&quot;</span><span class="fu">:</span><span class="dv">64</span><span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">{</span><span class="dt">&quot;scene&quot;</span><span class="fu">:</span><span class="dv">177</span><span class="fu">,</span><span class="dt">&quot;id&quot;</span><span class="fu">:</span><span class="dv">13</span><span class="fu">,</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">&quot;target&quot;</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">&quot;longtarget&quot;</span><span class="fu">:</span><span class="dv">255</span><span class="fu">,</span><span class="dt">&quot;onoff&quot;</span><span class="fu">:</span><span class="kw">true</span><span class="fu">,</span><span class="dt">&quot;value&quot;</span><span class="fu">:</span><span class="dv">107</span><span class="fu">,</span><span class="dt">&quot;app&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="st">&quot;App1&quot;</span><span class="ot">,</span><span class="st">&quot;App2&quot;</span><span class="ot">]</span><span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>     <span class="er">...</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> <span class="ot">]</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div></li>
-<li><p>на «запрос отправки лог файла» - отправляется актуальный на
-текущий момент лог файл в формате <code>Base64</code> &gt;
-<code>UTF-8</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;getlog&quot;</span><span class="fu">,</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;log&quot;</span><span class="fu">:</span> <span class="st">&quot;BASE64-content&quot;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div></li>
-<li><p><code>&quot;action&quot;: &quot;changed&quot;</code> - отправляется в случае
-изменения параметров элемента управления <code>unit</code>, из секции
-конфигурации <code>units</code>. Генерируется сервером в момент
-изменения параметров элементов управления, а также, добавления новых,
-или удаления старых элементов.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;changed&quot;</span><span class="fu">,</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;unit&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="er">   </span>  <span class="dt">&quot;scene&quot;</span><span class="fu">:</span><span class="dv">177</span><span class="fu">,</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="er">   </span>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span><span class="dv">22</span><span class="fu">,</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="er">   </span>  <span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="er">   </span>  <span class="dt">&quot;target&quot;</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="er">    </span> <span class="dt">&quot;longtarget&quot;</span><span class="fu">:</span><span class="dv">255</span><span class="fu">,</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>     <span class="dt">&quot;onoff&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>     <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="dv">127</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">}</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div></li>
+<li><p>В списке «<strong>Доступные скрипты</strong>» отображаются все
+доступные сценарии в выбранном каталоге. Файлы скриптов должны иметь
+расширение <code>.mmts</code>. Для каждого файла сценария, отображается
+его размер и время последней модификации. Обратите внимание, время
+модификации устанавливается на текущее время при старте программы. Эти
+изменения не затрагивают реальных файлов на диске.</p></li>
+<li><p>Выбор «<strong>Директория скриптов</strong>» позволяет выбрать
+путь, по которому находятся выполняемые сценарии.</p></li>
+<li><p>Опця «<strong>Следить за изменениями в директории
+скриптов</strong>» включает отслеживание изменений файлов сценариев в
+выбранном каталоге. В случае изменения, добавления или удаления одного
+из сценариев, происходит автоматическая перезагрузка списка
+сценариев.</p></li>
 </ul>
-<h3 id="примеры-web-socket-приложений">Примеры Web Socket
-приложений</h3>
-<p>«<strong>IP адрес</strong>» и «<strong>Порт</strong>» в приложении
-должны соответствовать текущей рабочей <a href="Settings-Module-Remote.html">конфигурации</a> запущенного
-сервера.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="er">&quot;remote&quot;:</span> <span class="fu">{</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="dt">&quot;port&quot;</span><span class="fu">:</span> <span class="dv">8888</span><span class="fu">,</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="dt">&quot;host&quot;</span><span class="fu">:</span> <span class="st">&quot;x.x.x.x&quot;</span><span class="fu">,</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>    <span class="er">...</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="er">,</span></span></code></pre></div>
-<h5 id="javascript-web-socket">JavaScript Web Socket</h5>
-<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> socket <span class="op">=</span> <span class="kw">new</span> <span class="bu">WebSocket</span>(<span class="st">&quot;ws://x.x.x.x:8888/data&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>socket<span class="op">.</span><span class="at">onopen</span> <span class="op">=</span> <span class="kw">function</span>(e) {</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;[open] Connection established, request configuration from server...&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  socket<span class="op">.</span><span class="fu">send</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({ <span class="st">&quot;action&quot;</span><span class="op">:</span> <span class="st">&quot;config&quot;</span> }))<span class="op">;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>socket<span class="op">.</span><span class="at">onmessage</span> <span class="op">=</span> <span class="kw">function</span>(<span class="bu">event</span>) {</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;[message]&quot;</span><span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(<span class="bu">event</span><span class="op">.</span><span class="at">data</span>))<span class="op">;</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>socket<span class="op">.</span><span class="at">onclose</span> <span class="op">=</span> <span class="kw">function</span>(<span class="bu">event</span>) {</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">event</span><span class="op">.</span><span class="at">wasClean</span>) {</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">alert</span>(<span class="vs">`[close] Connection closed cleanly, code=</span><span class="sc">${</span><span class="bu">event</span><span class="op">.</span><span class="at">code</span><span class="sc">}</span><span class="vs"> reason=</span><span class="sc">${</span><span class="bu">event</span><span class="op">.</span><span class="at">reason</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// server process killed or network down</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// event.code is usually 1006 in this case</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;[close] Connection died&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>socket<span class="op">.</span><span class="at">onerror</span> <span class="op">=</span> <span class="kw">function</span>(error) {</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`[error]`</span>)<span class="op">;</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
-<p>Посмотреть этот пример на <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/example/JavaScript/">GitHub</a>.</p>
-<p>Подробнее о программировании <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications">JavaScript
-Web Socket</a> на <strong>MDN Web docs</strong>.</p>
-<h5 id="python-web-socket">Python Web Socket</h5>
-<p>Для запуска этого примера, вероятно вам придется установить
-пакеты:</p>
+<p><img src="data:text/html; charset=utf-8;charset=utf-8,%3C%21DOCTYPE%20html%3E%0A%3Chtml%3E%0A%20%20%3Chead%3E%0A%20%20%20%20%3Cmeta%20http%2Dequiv%3D%22Content%2Dtype%22%20content%3D%22text%2Fhtml%3B%20charset%3Dutf%2D8%22%3E%0A%20%20%20%20%3Cmeta%20http%2Dequiv%3D%22Content%2DSecurity%2DPolicy%22%20content%3D%22default%2Dsrc%20%27none%27%3B%20style%2Dsrc%20%27unsafe%2Dinline%27%3B%20img%2Dsrc%20data%3A%3B%20connect%2Dsrc%20%27self%27%22%3E%0A%20%20%20%20%3Ctitle%3EPage%20not%20found%20%26middot%3B%20GitHub%20Pages%3C%2Ftitle%3E%0A%20%20%20%20%3Cstyle%20type%3D%22text%2Fcss%22%20media%3D%22screen%22%3E%0A%20%20%20%20%20%20body%20%7B%0A%20%20%20%20%20%20%20%20background%2Dcolor%3A%20%23f1f1f1%3B%0A%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20font%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%2Econtainer%20%7B%20margin%3A%2050px%20auto%2040px%20auto%3B%20width%3A%20600px%3B%20text%2Dalign%3A%20center%3B%20%7D%0A%0A%20%20%20%20%20%20a%20%7B%20color%3A%20%234183c4%3B%20text%2Ddecoration%3A%20none%3B%20%7D%0A%20%20%20%20%20%20a%3Ahover%20%7B%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%0A%20%20%20%20%20%20h1%20%7B%20width%3A%20800px%3B%20position%3Arelative%3B%20left%3A%20%2D100px%3B%20letter%2Dspacing%3A%20%2D1px%3B%20line%2Dheight%3A%2060px%3B%20font%2Dsize%3A%2060px%3B%20font%2Dweight%3A%20100%3B%20margin%3A%200px%200%2050px%200%3B%20text%2Dshadow%3A%200%201px%200%20%23fff%3B%20%7D%0A%20%20%20%20%20%20p%20%7B%20color%3A%20rgba%280%2C%200%2C%200%2C%200%2E5%29%3B%20margin%3A%2020px%200%3B%20line%2Dheight%3A%201%2E6%3B%20%7D%0A%0A%20%20%20%20%20%20ul%20%7B%20list%2Dstyle%3A%20none%3B%20margin%3A%2025px%200%3B%20padding%3A%200%3B%20%7D%0A%20%20%20%20%20%20li%20%7B%20display%3A%20table%2Dcell%3B%20font%2Dweight%3A%20bold%3B%20width%3A%201%25%3B%20%7D%0A%0A%20%20%20%20%20%20%2Elogo%20%7B%20display%3A%20inline%2Dblock%3B%20margin%2Dtop%3A%2035px%3B%20%7D%0A%20%20%20%20%20%20%2Elogo%2Dimg%2D2x%20%7B%20display%3A%20none%3B%20%7D%0A%20%20%20%20%20%20%40media%0A%20%20%20%20%20%20only%20screen%20and%20%28%2Dwebkit%2Dmin%2Ddevice%2Dpixel%2Dratio%3A%202%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20min%2D%2Dmoz%2Ddevice%2Dpixel%2Dratio%3A%202%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20%20%20%2Do%2Dmin%2Ddevice%2Dpixel%2Dratio%3A%202%2F1%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20%20%20%20%20%20min%2Ddevice%2Dpixel%2Dratio%3A%202%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20min%2Dresolution%3A%20192dpi%29%2C%0A%20%20%20%20%20%20only%20screen%20and%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20min%2Dresolution%3A%202dppx%29%20%7B%0A%20%20%20%20%20%20%20%20%2Elogo%2Dimg%2D1x%20%7B%20display%3A%20none%3B%20%7D%0A%20%20%20%20%20%20%20%20%2Elogo%2Dimg%2D2x%20%7B%20display%3A%20inline%2Dblock%3B%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%23suggestions%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%2035px%3B%0A%20%20%20%20%20%20%20%20color%3A%20%23ccc%3B%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%23suggestions%20a%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23666666%3B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20200%3B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2014px%3B%0A%20%20%20%20%20%20%20%20margin%3A%200%2010px%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%3C%2Fstyle%3E%0A%20%20%3C%2Fhead%3E%0A%20%20%3Cbody%3E%0A%0A%20%20%20%20%3Cdiv%20class%3D%22container%22%3E%0A%0A%20%20%20%20%20%20%3Ch1%3E404%3C%2Fh1%3E%0A%20%20%20%20%20%20%3Cp%3E%3Cstrong%3EFile%20not%20found%3C%2Fstrong%3E%3C%2Fp%3E%0A%0A%20%20%20%20%20%20%3Cp%3E%0A%20%20%20%20%20%20%20%20The%20site%20configured%20at%20this%20address%20does%20not%0A%20%20%20%20%20%20%20%20contain%20the%20requested%20file%2E%0A%20%20%20%20%20%20%3C%2Fp%3E%0A%0A%20%20%20%20%20%20%3Cp%3E%0A%20%20%20%20%20%20%20%20If%20this%20is%20your%20site%2C%20make%20sure%20that%20the%20filename%20case%20matches%20the%20URL%0A%20%20%20%20%20%20%20%20as%20well%20as%20any%20file%20permissions%2E%3Cbr%3E%0A%20%20%20%20%20%20%20%20For%20root%20URLs%20%28like%20%3Ccode%3Ehttp%3A%2F%2Fexample%2Ecom%2F%3C%2Fcode%3E%29%20you%20must%20provide%20an%0A%20%20%20%20%20%20%20%20%3Ccode%3Eindex%2Ehtml%3C%2Fcode%3E%20file%2E%0A%20%20%20%20%20%20%3C%2Fp%3E%0A%0A%20%20%20%20%20%20%3Cp%3E%0A%20%20%20%20%20%20%20%20%3Ca%20href%3D%22https%3A%2F%2Fhelp%2Egithub%2Ecom%2Fpages%2F%22%3ERead%20the%20full%20documentation%3C%2Fa%3E%0A%20%20%20%20%20%20%20%20for%20more%20information%20about%20using%20%3Cstrong%3EGitHub%20Pages%3C%2Fstrong%3E%2E%0A%20%20%20%20%20%20%3C%2Fp%3E%0A%0A%20%20%20%20%20%20%3Cdiv%20id%3D%22suggestions%22%3E%0A%20%20%20%20%20%20%20%20%3Ca%20href%3D%22https%3A%2F%2Fgithubstatus%2Ecom%22%3EGitHub%20Status%3C%2Fa%3E%20%26mdash%3B%0A%20%20%20%20%20%20%20%20%3Ca%20href%3D%22https%3A%2F%2Ftwitter%2Ecom%2Fgithubstatus%22%3E%40githubstatus%3C%2Fa%3E%0A%20%20%20%20%20%20%3C%2Fdiv%3E%0A%0A%20%20%20%20%20%20%3Ca%20href%3D%22%2F%22%20class%3D%22logo%20logo%2Dimg%2D1x%22%3E%0A%20%20%20%20%20%20%20%20%3Cimg%20width%3D%2232%22%20height%3D%2232%22%20title%3D%22%22%20alt%3D%22%22%20src%3D%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw%2FeHBhY2tldCBiZWdpbj0i77u%2FIiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8%2BIDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFMTZCRDY3REIzRjAxMUUyQUQzREIxQzRENUFFNUM5NiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFMTZCRDY3RUIzRjAxMUUyQUQzREIxQzRENUFFNUM5NiI%2BIDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUxNkJENjdCQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUxNkJENjdDQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2Ii8%2BIDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY%2BIDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8%2BSM9MCAAAA%2B5JREFUeNrEV11Ik1EY3s4%2BddOp29Q5b0opCgKFsoKoi5Kg6CIhuwi6zLJLoYLopq4qsKKgi4i6CYIoU%2Fq5iDAKs6syoS76IRWtyJ%2Bp7cdt7sf1PGOD%2Be0c3dygAx%2F67ZzzPM95%2F877GYdHRg3ZjMXFxepQKNS6sLCwJxqNNuFpiMfjVs4ZjUa%2FpmmjeD6VlJS8NpvNT4QQ7mxwjSsJiEQim%2F1%2B%2F9lgMHgIr5ohuxG1WCw9Vqv1clFR0dCqBODElV6v90ogEDjGdYbVjXhpaendioqK07CIR7ZAqE49PT09BPL2PMgTByQGsYiZlQD4uMXtdr%2BJxWINhgINYhGT2MsKgMrm2dnZXgRXhaHAg5jEJodUAHxux4LudHJE9RdEdA%2Bi3Juz7bGHe4mhE9FNrgwBCLirMFV9Okh5eflFh8PR5nK5nDabrR2BNJlKO0T35%2BLi4n4%2B%2FJ%2B%2FJQCxhmu5h3uJoXNHPbmWZAHMshWB8l5%2FipqammaAf0zPDDx1ONV3vurdidqwAQL%2BpEc8sLcAe1CCvQ3YHxIW8Pl85xSWNC1hADDIv0rIE%2Fo4J0k3kww4xSlwIhcq3EFFOm7KN%2FhUGOQkt0CFa5WpNJlMvxBEz%2FIVQAxg%2FZRZl9wiHA63yDYieM7DnLP5CiAGsC7I5sgtYKJGWe2A8seFqgFJrJjEPY1Cn3pJ8%2F9W1e5VWsFDTEmFrBcoDhZJEQkXuhICMyKpjhahqN21hRYATKfUOlDmkygrR4o4C0VOLGJKrOITKB4jijzdXygBKixyC5TDQdnk%2FPz8qRw6oOWGlsTKGOQW6OH6FBWsyePxdOXLTgxiyebILZCjz%2BGLgMIKnXNzc49YMlcRdHXcSwxFVgTInQhC9G33UhNoJLuqq6t345p9y3eUy8OTk5PjAHuI9uo4b07FBaOhsu0A4Unc%2BT1TU1Nj3KsSSE5yJ65jqF2DDd8QqWYmAZrIM2VlZTdnZmb6AbpdV9V6ec9znf5Q7HjYumdRE0JOp3MjitO4SFa%2BcZz8Umqe3TCbSLvdfkR%2FkWDdNQl5InuTcysOcpFT35ZrbBxx4p3JAHlZVVW1D%2F634VRt%2BFvLBgK%2Fv5LV9WS%2B10xMTEwtRw7XvqOL%2Be2Q8V3AYIOIAXQ26%2FheWVnZCVfcyKHg2CBgTpmPmjYM8l24GyaUHyaIh7XwfR9ErE8qHoDfn2LTNAVC0HX6MFcBIP8Bi%2B6F6cdW%2FDICkANRfx99fEYFQ7Nph5i%2FuQiA214gno7K%2BguhaiKg9gC62%2BM8eR7XsBsYJ4ilam60Fb7r7uAj8wFyuwM1oIOWgfmDy6RXEEQzJMPe23DXrVS7rtyD3Df8z%2FFPgAEAzWU5Ku59ZAUAAAAASUVORK5CYII%3D%22%3E%0A%20%20%20%20%20%20%3C%2Fa%3E%0A%0A%20%20%20%20%20%20%3Ca%20href%3D%22%2F%22%20class%3D%22logo%20logo%2Dimg%2D2x%22%3E%0A%20%20%20%20%20%20%20%20%3Cimg%20width%3D%2232%22%20height%3D%2232%22%20title%3D%22%22%20alt%3D%22%22%20src%3D%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw%2FeHBhY2tldCBiZWdpbj0i77u%2FIiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8%2BIDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpEQUM1QkUxRUI0MUMxMUUyQUQzREIxQzRENUFFNUM5NiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpEQUM1QkUxRkI0MUMxMUUyQUQzREIxQzRENUFFNUM5NiI%2BIDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUxNkJENjdGQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUxNkJENjgwQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2Ii8%2BIDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY%2BIDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8%2BhfPRaQAAB6lJREFUeNrsW2mME2UYbodtt%2B2222u35QheoCCYGBQligIJgkZJNPzgigoaTEj8AdFEMfADfyABkgWiiWcieK4S%2BQOiHAYUj2hMNKgYlEujpNttu9vttbvdw%2BchU1K6M535pt3ubHCSyezR%2Bb73eb73%2Bt7vrfXsufOW4bz6%2Bvom9%2Fb23ovnNNw34b5xYGAgODg46Mbt4mesVmsWd1qSpHhdXd2fuP%2FAfcput5%2FA88xwymcdBgLqenp6FuRyuWV4zu%2Fv759QyWBjxoz5t76%2B%2Fgun09mK5xFyakoCAPSaTCazNpvNPoYVbh6O1YKGRF0u13sNDQ27QMzfpiAAKj0lnU6%2FgBVfAZW2WWpwwVzy0IgP3G73FpjI6REhAGA9qVRqA1b9mVoBVyIC2tDi8Xg24%2BdUzQiAbS%2Fs7Ox8G2o%2F3mKCC%2BZw0efzPQEfcVjYrARX3dbV1bUtHo8fMgt42f%2BMp0yUTVQbdWsAHVsikdiHkHaPxcQXQufXgUBgMRxme9U0AAxfH4vFvjM7eF6UkbJS5qoQwEQGA57Ac5JllFyUVZZ5ckUEgMVxsK2jlSYzI%2BQXJsiyjzNEAJyJAzb%2FKQa41jJKL8pODMQiTEAymXw5n8%2FP0IjD3bh7Rgog59aanxiIRTVvV%2Foj0tnHca%2FWMrVwODwB3raTGxzkBg%2FgnZVapFV62Wy2n5AO70HM%2F5wbJ0QnXyQSaVPDIuNZzY0V3ntHMwxiwHA0Gj2Np7ecIBDgaDAYXKCQJM1DhrgJ3nhulcPbl8j4NmHe46X%2Fg60fwbz3aewjkqFQaAqebWU1AOqyQwt8Id6qEHMc97zu7u7FGGsn7HAiVuosVw7P35C1nccdgSCxop1dHeZswmfHMnxBo6ZTk%2BjN8dl%2FvF7vWofDsa%2BMLN9oEUBMxOb3%2B1eoEsBVw6Zmua49r8YmhAKDiEPcMwBsxMiqQ%2BixzPFxZyqRpXARG%2FYOr1ObFJ0gUskXBbamcR1OKmMUvDxHRAu8%2FLmY3jFLMUpFqz9HxG65smYJdyKyECOxDiEAe%2Fp1gjF2oonivZAsxVgl2daa4EQWCW6J55qFAFFZiJWYLxNQy2qOSUzGRsyXCUDIeliwAHEO4WSlWQBRFoZakXcKmCXmyXAKs0Ve9vl8q42WoIYpJU4hV3hKcNs8m9gl7p%2FxQ73eF5kB4j5mNrWmTJRNwAzqiV1CxjVTZCIkEq%2BZ1bZFZSN2CenmVAFVy4Plz8xKAGWjjAKFk6lCBMDR%2FMJjLLMSQNm43xAiQKTaA%2B9%2FwewhDjL%2BJVI1kkTSSOTcKbMTwPqESAot6dn6Fr1gHwVJju6IRuyiByPuUUBAg5DGkAgBmxlvdgIEK9gDkohdY%2FBJo4CAG0R8miRSsGABkgVQs4KXu098IgUXSSRsFAoKZiVAVDY2WUiiPTjYRi41KwGisrGsLtlsth8Fiwnz2fBkQvWfRtlE3iF2yW63%2FyCacXZ1dW02GwGyTFaRd4idJnCKHRaCxYRHoG5LTKT6SyiToP1fJHbmAYPYRR0UnZQtMnA6s0zg%2BGZBlt0Gdo7EPHgpE3Q6nZ8YyLhc8Xj8MJh%2FaKTAY%2B5FPAKHLE7RdwuYJZmNwzyCMkBCYyKROJBMJl9B%2FPXXCjjmCmDOVzH3fiPpObEWGqoKe4EBl8v1hlqsdLvd23mkxHM9pc9kMpmno9HoeTii7ewbHEZPPx1ztLS1tV3AnGuMjiNjvbQFuHw6zDo5By7dTPAQNBgMLrRarTkSls1mnwT7uwp9virx9QzbW%2FHuV%2Fj5d%2Fb%2B6jniKlllP8lkeONJDk%2Bdq9GsQTnC4fB1heO0K47Hwe7WdDr9nAKgXwOBwHI%2BC45Htj1d6sd429TUNEcmUdc%2BPRaLHcvn87dXW4ugzdsaGxufL94NFv9zi1J7GVbhlvb2dnaJ3SVrxfc%2Bn2%2BNTsZ7%2FH7%2FMr3g5XdSIHyJSH1PZ%2B7fToyl2%2BErqilgZ4NaLYB9goVGaHjR93Hv1ZrU4XDsFT20kH3PObzbWk0CgG1jacVIUnAQb9F%2BVexyLMzkpcLv0IJV7AHQIOCAUYHx7v5qgScmYHtTqSAyZLEJTK22Bie4iq3xsqpm4SAf9Hq9a2DnJ4uLK3SEULcdRvp3i3zHySqpficxEdsQc1NrlYXXvR%2BO7qASSezXB%2Bh1SuUomgg9LL8BUoV4749EIolKh%2BEiqWmqVEZlDgHks2pxHw7xTqUQw9J5NcAXOK10AGIoZ6Zli6JY6Z1Q461KoZ4NiKLHarW%2BKDsxlDUPHZ5zPQZqUVDPJsTqb5n9malbpAh8C2XXDLl62%2BWZIDFRUlNVOiwencnNU3aQEkL%2BcDMSoLvZo2fQB7AJssNAuFuvorlDVVkkg2I87%2Bjo2K2QAVphDrfyViK5VqtO34OkaxXCp%2B7drdDBCAdubm6eidX%2B2WwqT5komwh4YQLk%2BH4aE93h8Xg2gvHekQZOGSgLZTLyDTLJ4Lx9%2FKZWKBSainT4Iy3FqQBfnUZR42PKQFksBr9QKVXCPusD3OiA%2FRkQ5kP8qV%2FJl1WywAp%2F6%2BdcmPM2zL1UrUahe4JqfnWWKXIul3uUbfP8njAFLW1OFr3gdFtZ72cNH%2BPtQT7%2FbrW%2BNXqJAHh0y9V8%2FU%2FA1U7AfwIMAD7mS3pCbuWJAAAAAElFTkSuQmCC%22%3E%0A%20%20%20%20%20%20%3C%2Fa%3E%0A%20%20%20%20%3C%2Fdiv%3E%0A%20%20%3C%2Fbody%3E%0A%3C%2Fhtml%3E%0A" title alt data-align="center"></p>
+<p>Для разработки и тестов сценариев, в дистрибутиве прилагается утилита
+<code>MMTScriptTester.exe</code>. Вы можете использовать её для отладки
+при написании собственных сценариев. Функция отслеживания изменений в
+каталоге сценариев также работает в <code>MMTScriptTester</code>,
+скпипты в случае изменения перезагружаются автоматически. Если изменения
+произошли в момент выполнения любого сценария, то изменения
+откладываются до окончания его работы.</p>
+<h4 id="конфигурационный-файл">Конфигурационный файл</h4>
+<p>Настройки в конфигурационном файле, выглядят следующим образом:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">    ...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">&quot;vmscript&quot;</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">&quot;enable&quot;</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="kw">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">&quot;watch&quot;</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="kw">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">&quot;directory&quot;</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;C:\MIDI-MT\scripts&quot;</span><span class="kw">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">&quot;scripts&quot;</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">]</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">},</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">    ...</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<h4 id="краткие-сведения-о-основных-характеристиках-языка-chaiscript">Краткие
+сведения о основных характеристиках языка ChaiScript</h4>
 <ul>
-<li><code>pip install websocket-client</code></li>
-<li><code>pip install rel</code></li>
+<li>Переменные не имеют типа до тех пор, пока им сначала не будет
+присвоено значение.</li>
+<li>Конструкции типа if, else, for и while принимают только блоки,
+заключённые в <code>{ ... };</code>.</li>
+<li>Операторы инкремента или декремента, только перед переменной
+<code>++value</code>.</li>
+<li>Ключевые слова:
+<code>attr,  auto, break, case, catch, class, continue, def, default, else, finally, for, global, if, return, switch, try, var, while</code>.</li>
+<li>Операторы:
+<code>?  ||  &amp;&amp;  |  ^  &amp;  ==  !=  &lt;  &lt;=  &gt;  &gt;=  &lt;&lt;  &gt;&gt;  +  -  *  /  %  ++  --  !  ~</code>.</li>
+<li>Глобальные идентификаторы:
+<code>Nan, Infinity, false, true, __CLASS__, __FILE__ , __FUNC__, __LINE__</code>.<br />
+</li>
+<li>Переменные: <code>auto, var</code>.</li>
+<li>Функции: всегда начинаются с идентификатора <code>def</code> -
+<code>def my_function() { ... }</code>.</li>
+<li>Классы: есть, аналогично <code>C++</code>, подробнее в оригинальной
+документации.</li>
+<li>Целочисленные литералы как в C++. Поддерживаются десятичные
+бинарные, октальные и шестнадцатеричные целые литералы.</li>
+<li>Числа с плавающей точкой как в C++, но шестнадцатеричные литералы с
+плавающей точкой не поддерживаются.</li>
+<li>Строчные литералы стандартно заключаются в двойные кавычки, также,
+они могут содержать интерполяции, которые заключены в
+<code>${ ... }</code>.</li>
+<li>Аннотации: однострочные комментарии, начинающиеся с <code>#</code>.
+Аннотации могут быть получены программно.</li>
+<li>Комментарии: <code>//...   /* ... */</code>.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> websocket</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> _thread</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rel</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_message(ws, message):</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(message)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_error(ws, error):</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(error)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_close(ws, close_status_code, close_msg):</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;### closed ###&quot;</span>)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_open(ws):</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Opened connection&quot;</span>)</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    ws.send(<span class="st">&quot;{ </span><span class="ch">\&quot;</span><span class="st">action</span><span class="ch">\&quot;</span><span class="st">: </span><span class="ch">\&quot;</span><span class="st">config</span><span class="ch">\&quot;</span><span class="st"> }&quot;</span>)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    websocket.enableTrace(<span class="va">True</span>)</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    ws <span class="op">=</span> websocket.WebSocketApp(<span class="st">&quot;ws://x.x.x.x:8888/data&quot;</span>,</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>                              on_open<span class="op">=</span>on_open,</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>                              on_message<span class="op">=</span>on_message,</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                              on_error<span class="op">=</span>on_error,</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>                              on_close<span class="op">=</span>on_close)</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>ws.run_forever(dispatcher<span class="op">=</span>rel, reconnect<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>rel.signal(<span class="dv">2</span>, rel.abort)</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>rel.dispatch()  </span></code></pre></div>
-<p>Посмотреть этот пример на <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/example/Python/">GitHub</a>.</p>
-<p>Подробнее о программировании <a href="https://websocket-client.readthedocs.io/en/latest/examples.html">Python
-Web Socket</a> в документации <strong>websocket-client</strong>.</p>
+<h6 id="поддерживаемые-типы">поддерживаемые типы:</h6>
+<ul>
+<li><strong>Boolean</strong>: <code>bool</code>.</li>
+<li><strong>Integers</strong>:
+<code>int, long, unsigned_int, unsigned_long, long_long, unsigned_long_long, size_t, int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t</code>.</li>
+<li><strong>Floating points</strong>:
+<code>double, long_double, float</code>.</li>
+<li><strong>Characters</strong>:
+<code>char, wchar_t, char16_t, char32_t</code>.</li>
+<li><strong>Strings</strong>: <code>string</code>
+(<code>C++ std::string</code>).</li>
+<li><strong>Aggregates</strong>: <code>Vector, Map, Pair</code>.</li>
+<li><strong>Async</strong>: <code>promise, future</code>.</li>
+</ul>
+<h6 id="документация-и-примеры-chaiscript">документация и примеры
+ChaiScript</h6>
+<ol type="1">
+<li>Узнать больше в <a href="https://chaiscript.com/examples.html#ChaiScript_Language_Examples">документации
+и примерах</a> на сайте <code>ChaiScript</code>.</li>
+<li>Посмотреть больше <a href="https://github.com/ChaiScript/ChaiScript/tree/master/unittests">примеров
+кода</a> <code>ChaiScript</code>.</li>
+<li>Пример <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/script/example/api-example.mmts">MIDI-MT
+API</a>.</li>
+<li>Примеры управления <strong>RGB LED</strong>: <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/script/example/example-RGB-led-effect-1.mmts">пример
+RGB-led эффекта</a>, <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/script/example/example-change-colors.mmts">изменение
+цвета</a>, <a href="https://github.com/ClaudiaCoord/MIDI-EasyControl-to-Mackie-translator-for-Premiere-Pro/tree/main/docs/API/script/example/example-change-lights.mmts">изменение
+яркости</a>.</li>
+</ol>
 <footer>
       <a href="index.html" rel="noopener">≡ WIKI</a>
        | 
